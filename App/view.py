@@ -35,9 +35,18 @@ operación solicitada
 """
 
 def printMenu():
+    print("\n")
+    print("*******************************************")
     print("Bienvenido")
-    print("1- Cargar información en el catálogo")
-    print("2- ")
+    print("1- Inicializar Analizador")
+    print("2- Cargar información de los vuelos del mundo")
+    print("3- Encontrar puntos de interconexión aérea")
+    print("4- Encontrar clústeres de tráfico aéreo y saber si dos aeropuertos pertenecen a esta")
+    print("5- Encontrar la ruta más corta entre dos ciudades")
+    print("6- Utilizar millas de viajero para conocer la mayor cantidad de ciudades")
+    print("7- Cuantificar el efecto de un aeropuerto cerrado")
+    print("0- Salir")
+    print("*******************************************")
 
 catalog = None
 
@@ -48,10 +57,23 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
-        print("Cargando información de los archivos ....")
+        print("Inicializando")
 
     elif int(inputs[0]) == 2:
         pass
+    elif int(inputs[0]) == 3:
+        pass
+    elif int(inputs[0]) == 4:
+        airport1 = input("Por favor escriba el nombre del código IATA del aeropuerto 1")
+        airport2 = input("Por favor escriba el nombre del código IATA del aeropuerto 2")
+    elif int(inputs[0]) == 5:
+        ciudad1 = input("Por favor escriba el nombre de la ciudad de origen")
+        ciudad2 = input("Por favor escriba el nombre de la ciudad de destino")
+    elif int(inputs[0]) == 6:
+        ciudad = input("Por favor escriba su ciudad de origen")
+        millas = input("Por favor escriba su cantidad de millas de viajero")
+    elif int(inputs[0]) == 7:
+        airport = input("Por favor escriba el código IATA del aeropuerto que está fuera de funcionamiento")
 
     else:
         sys.exit(0)
