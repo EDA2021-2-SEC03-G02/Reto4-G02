@@ -58,7 +58,7 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Inicializando")
-
+        cont = controller.init()
     elif int(inputs[0]) == 2:
         pass
     elif int(inputs[0]) == 3:

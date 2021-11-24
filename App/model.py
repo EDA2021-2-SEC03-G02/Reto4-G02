@@ -30,12 +30,48 @@ from DISClib.ADT import list as lt
 from DISClib.ADT import map as mp
 from DISClib.DataStructures import mapentry as me
 from DISClib.Algorithms.Sorting import shellsort as sa
+from DISClib.ADT.graph import gr
 assert cf
 
 """
 Se define la estructura de un catálogo de videos. El catálogo tendrá dos listas, una para los videos, otra para las categorias de
 los mismos.
 """
+
+def newAnalyzer():
+    analyzer = {"Di-aeropuertos": None, "No-aeropuertos": None, "aeropuertos": None, "ciudad-iata": None, "ciudades": None}
+    
+    analyzer['Di-aeropuertos'] = gr.newGraph(datastructure='ADJ_LIST',
+                                              directed=True,
+                                              size=14000,
+                                              comparefunction=compareStopIds)
+    analyzer['N0-aeropuertos'] = gr.newGraph(datastructure='ADJ_LIST',
+                                              directed=False,
+                                              size=14000,
+                                              comparefunction=compareStopIds)
+    analyzer['aeropuertos'] = mp.newMap(numelements=14000,
+                                     maptype='PROBING',
+                                     comparefunction=compareStopIds)
+    analyzer['ciudad-iata'] = gr.newGraph(datastructure='ADJ_LIST',
+                                              directed=False,
+                                              size=14000,
+                                              comparefunction=compareStopIds)
+    analyzer['ciudades'] = mp.newMap(numelements=14000,
+                                     maptype='PROBING',
+                                     comparefunction=compareStopIds)                                          
+
+
+def compareStopIds(stop, keyvaluestop):
+    """
+    Compara dos estaciones
+    """
+    stopcode = keyvaluestop['key']
+    if (stop == stopcode):
+        return 0
+    elif (stop > stopcode):
+        return 1
+    else:
+        return -1
 
 # Construccion de modelos
 
