@@ -53,7 +53,18 @@ def loadRoutes(analyzer, routes):
         model.addRoutesGraph(analyzer, route)
 
 def loadCities(analyzer, cities):
-    None
+    servicesfile = cf.data_dir + cities
+    input_file = csv.DictReader(open(servicesfile, encoding="utf-8"),
+                                delimiter=",")
+    for city in input_file:
+        model.addCiudad(analyzer, city)
+
+def totalRoutes(grafo):
+    return model.totalRoutes(grafo)
+
+def totalAirports(grafo):
+    return model.totalAirports(grafo)
+
 
 
 # Inicialización del Catálogo de libros

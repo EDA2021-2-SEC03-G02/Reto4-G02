@@ -59,14 +59,14 @@ def newAnalyzer():
                                               comparefunction=compareStopIds)
     analyzer['ciudades'] = mp.newMap(numelements=14000,
                                      maptype='PROBING',
-                                     comparefunction=compareStopIds)                                          
+                                     comparefunction=compareStopIds)       
+    return analyzer                                   
 
 def addAirport(analyzer, airport):
     mapa = analyzer["aeropuertos"]
     mp.put(mapa, airport["IATA"], airport)
 
 def addRoutesGraph(analyzer, route):
-    grafo = analyzer["Di-aeropuerto"]
     airport1 = route["Departure"]
     airport2 = route["Destination"]
     distance = route["distance_km"]
@@ -76,16 +76,37 @@ def addRoutesGraph(analyzer, route):
 
 def addAirportVertex(analyzer, airport):
     try:
-        if not gr.containsVertex(analyzer['Di-aeropuerto'], airport):
-            gr.insertVertex(analyzer['Di-aeropuerto'], airport)
-        if not gr.containsVertex(analyzer['NO-aeropuerto'], airport):
-            gr.insertVertex(analyzer['NO-aeropuerto'], airport)
+        if not gr.containsVertex(analyzer['Di-aeropuertos'], airport):
+            gr.insertVertex(analyzer['Di-aeropuertos'], airport)
         return analyzer
     except Exception as exp:
         error.reraise(exp, 'model:addstop')
 
+def addAirportVertexNO(analyzer, airport):
+    try:
+        if not gr.containsVertex(analyzer['NO-aeropuertos'], airport):
+            gr.insertVertex(analyzer['NO-aeropuertos'], airport)
+        return analyzer
+    except Exception as exp:
+        error.reraise(exp, 'model:addstop')
+    
+def addConnectionNO(analyzer, airport1, airport2, distance):
+    edge = gr.getEdge(analyzer['NO-aeropuertos'], airport1, airport2)
+    if edge is None:
+        gr.addEdge(analyzer['NO-aeropuertos'], airport1, airport2, distance)
+
 def addConnection(analyzer, airport1, airport2, distance):
-    None
+    edge = gr.getEdge(analyzer['Di-aeropuertos'], airport1, airport2)
+    edge2 = gr.getEdge(analyzer['Di-aeropuertos'], airport2, airport1)
+    #hacer todo aca para no dirijido, hacer edge 2 y revisar y todo eso
+    if edge is None:
+        gr.addEdge(analyzer['Di-aeropuertos'], airport1, airport2, distance)
+    if edge is not None and edge2 is not None:
+        addAirportVertexNO(analyzer, airport1)
+        addAirportVertexNO(analyzer, airport2)
+        addConnectionNO(analyzer, airport1, airport2, distance)
+
+    return analyzer
 
 
 
@@ -106,6 +127,11 @@ def compareStopIds(stop, keyvaluestop):
     else:
         return -1
 
+def totalAirports(grafo):
+    return gr.numVertices(grafo)
+
+def totalRoutes(grafo):
+    return gr.numEdges(grafo)
 # Construccion de modelos
 
 # Funciones para agregar informacion al catalogo

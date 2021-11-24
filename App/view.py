@@ -20,6 +20,7 @@
  * along withthis program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
+from DISClib.ADT.graph import numEdges
 import config as cf
 import sys
 import controller
@@ -56,6 +57,22 @@ catalog = None
 def option2(cont):
     print("Cargarndo la información de vuelos, rutas, aeropuertos y ciuades")
     controller.loadTodo(cont, airports, routes, cities)
+    grafo1 = cont["Di-aeropuertos"]
+    numedges1 = controller.totalRoutes(grafo1)
+    numvertex1 = controller.totalAirports(grafo1)
+    grafo2 = cont["NO-aeropuertos"]
+    numedges2 = controller.totalRoutes(grafo2)
+    numvertex2 = controller.totalAirports(grafo2)
+    
+    print("**"*56)
+    print("Información del Digrafo de aeropuertos conectados por vuelos entre sí")
+    print("Numero de vertices (aeropuertos): " +str(numvertex1))
+    print("Numero de arcos: " +str(numedges1))
+    print("**"*56)
+    print("Informacion del grafo NO dirigido de aeropuertos con vuelos disponibles en ambas direcciones")
+    print("Numero de vertices (aeropuertos): " +str(numvertex2))
+    print("Numero de arcos: " +str(numedges2))
+    
 
 """
 Menu principal
