@@ -31,6 +31,7 @@ from DISClib.ADT import map as mp
 from DISClib.DataStructures import mapentry as me
 from DISClib.Algorithms.Sorting import shellsort as sa
 from DISClib.ADT.graph import gr
+from DISClib.Utils import error as error
 assert cf
 
 """
@@ -45,7 +46,7 @@ def newAnalyzer():
                                               directed=True,
                                               size=14000,
                                               comparefunction=compareStopIds)
-    analyzer['N0-aeropuertos'] = gr.newGraph(datastructure='ADJ_LIST',
+    analyzer['NO-aeropuertos'] = gr.newGraph(datastructure='ADJ_LIST',
                                               directed=False,
                                               size=14000,
                                               comparefunction=compareStopIds)
@@ -63,6 +64,31 @@ def newAnalyzer():
 def addAirport(analyzer, airport):
     mapa = analyzer["aeropuertos"]
     mp.put(mapa, airport["IATA"], airport)
+
+def addRoutesGraph(analyzer, route):
+    grafo = analyzer["Di-aeropuerto"]
+    airport1 = route["Departure"]
+    airport2 = route["Destination"]
+    distance = route["distance_km"]
+    addAirportVertex(analyzer, airport1)
+    addAirportVertex(analyzer, airport2)
+    addConnection(analyzer, airport1, airport2, distance)
+
+def addAirportVertex(analyzer, airport):
+    try:
+        if not gr.containsVertex(analyzer['Di-aeropuerto'], airport):
+            gr.insertVertex(analyzer['Di-aeropuerto'], airport)
+        if not gr.containsVertex(analyzer['NO-aeropuerto'], airport):
+            gr.insertVertex(analyzer['NO-aeropuerto'], airport)
+        return analyzer
+    except Exception as exp:
+        error.reraise(exp, 'model:addstop')
+
+def addConnection(analyzer, airport1, airport2, distance):
+    None
+
+
+
 
 def addCiudad(analyzer, ciudad):
     mapa = analyzer["ciudades"]

@@ -44,8 +44,13 @@ def loadAirports(analyzer, airports):
     for airport in input_file:
         model.addAirport(analyzer, airport)
 
+
 def loadRoutes(analyzer, routes):
-    None
+    servicesfile = cf.data_dir + routes
+    input_file = csv.DictReader(open(servicesfile, encoding="utf-8"),
+                                delimiter=",")
+    for route in input_file:
+        model.addRoutesGraph(analyzer, route)
 
 def loadCities(analyzer, cities):
     None
