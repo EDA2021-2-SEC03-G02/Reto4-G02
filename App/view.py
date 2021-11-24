@@ -33,6 +33,9 @@ Presenta el menu de opciones y por cada seleccion
 se hace la solicitud al controlador para ejecutar la
 operación solicitada
 """
+airports = "airports_full.csv"
+routes = "routes_full.csv"
+cities = "worldcities.csv"
 
 def printMenu():
     print("\n")
@@ -50,6 +53,10 @@ def printMenu():
 
 catalog = None
 
+def option2(cont):
+    print("Cargarndo la información de vuelos, rutas, aeropuertos y ciuades")
+    controller.loadTodo(cont, airports, routes, cities)
+
 """
 Menu principal
 """
@@ -60,7 +67,7 @@ while True:
         print("Inicializando")
         cont = controller.init()
     elif int(inputs[0]) == 2:
-        pass
+        option2(cont)
     elif int(inputs[0]) == 3:
         pass
     elif int(inputs[0]) == 4:
@@ -78,3 +85,10 @@ while True:
     else:
         sys.exit(0)
 sys.exit(0)
+
+
+if __name__ == "__main__":
+    threading.stack_size(67108864)  # 64MB stack
+    sys.setrecursionlimit(2 ** 20)
+    thread = threading.Thread(target=thread_cycle)
+    thread.start()

@@ -60,6 +60,13 @@ def newAnalyzer():
                                      maptype='PROBING',
                                      comparefunction=compareStopIds)                                          
 
+def addAirport(analyzer, airport):
+    mapa = analyzer["aeropuertos"]
+    mp.put(mapa, airport["IATA"], airport)
+
+def addCiudad(analyzer, ciudad):
+    mapa = analyzer["ciudades"]
+    mp.put(mapa, ciudad["city"], ciudad)
 
 def compareStopIds(stop, keyvaluestop):
     """

@@ -32,6 +32,25 @@ def init():
     analyzer = model.newAnalyzer()
     return analyzer
 
+def loadTodo(analyzer, airports, routes, cities):
+    loadAirports(analyzer, airports)
+    loadRoutes(analyzer, routes)
+    loadCities(analyzer, cities)
+
+def loadAirports(analyzer, airports):
+    servicesfile = cf.data_dir + airports
+    input_file = csv.DictReader(open(servicesfile, encoding="utf-8"),
+                                delimiter=",")
+    for airport in input_file:
+        model.addAirport(analyzer, airport)
+
+def loadRoutes(analyzer, routes):
+    None
+
+def loadCities(analyzer, cities):
+    None
+
+
 # Inicialización del Catálogo de libros
 
 # Funciones para la carga de datos
