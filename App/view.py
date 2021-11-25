@@ -58,6 +58,9 @@ def printPrimero(primero):
     print("El primer aeropuerto cargado fue: ")
     print("Nombre: " +primero["Name"]+", Ciudad: "+primero["City"]+", País: "+primero["Country"]+", Latitud: "+primero["Latitude"]+", Longitud: "+primero["Longitude"])
 
+def printInfoUltimo(ultimo):
+    print("Nombre: " +ultimo["city"]+ ", Poblacion: " +ultimo["population"]+", Latitud: "+ultimo["lat"] +", Longitud: "+ultimo["lng"])
+
 
 def option2(cont):
     print("Cargarndo la información de vuelos, rutas, aeropuertos y ciuades")
@@ -74,7 +77,9 @@ def option2(cont):
     numedges3 = controller.totalRoutes(grafo3)
     numvertex3 = controller.totalAirports(grafo3)
     lista = cont["cit"]
-    tamanio = controller.sizeLista(lista)
+    tamanio = controller.sizeLista(lista)[0]
+    ultimo = controller.sizeLista(lista)[1]
+    info_utlimo = controller.infoUltimo(cont, ultimo)
     print("**"*56)
     print("Información del Digrafo de aeropuertos conectados por vuelos entre sí")
     print("Numero de vertices (aeropuertos): " +str(numvertex1))
@@ -89,7 +94,8 @@ def option2(cont):
     print("Numero de arcos: " +str(numedges3))
     print("Total de ciudades: "+str(tamanio))
     print("**"*56)
-    print("Información de la última ciudad cargada")
+    print("Información de la última ciudad cargada: ")
+    printInfoUltimo(info_utlimo)
 
     
 

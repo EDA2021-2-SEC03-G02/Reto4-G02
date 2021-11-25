@@ -181,8 +181,17 @@ def FirstAirport(analyzer):
     return primera
 
 def sizeLista(lista):
-    return lt.size(lista)
-    
+    return lt.size(lista), lt.lastElement(lista)
+
+def infoUltimo(analyzer, ultimo):
+    ultimo = ultimo.replace(" City", "")
+    mapa = analyzer["ciudades"]
+    pareja = mp.get(mapa, ultimo)
+    print(pareja)
+    info = me.getValue(pareja)
+    return info
+
+
 
 
 # Construccion de modelos

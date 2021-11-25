@@ -70,6 +70,8 @@ def FirstAirport(analyzer):
 
 def sizeLista(lista):
     return model.sizeLista(lista)
+def infoUltimo(analyzer, ultimo):
+    return model.infoUltimo(analyzer, ultimo)
 
 
 
