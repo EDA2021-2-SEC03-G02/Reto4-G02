@@ -187,7 +187,6 @@ def infoUltimo(analyzer, ultimo):
     ultimo = ultimo.replace(" City", "")
     mapa = analyzer["ciudades"]
     pareja = mp.get(mapa, ultimo)
-    print(pareja)
     info = me.getValue(pareja)
     return info
 def sizeMapa(analyzer):

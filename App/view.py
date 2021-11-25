@@ -26,7 +26,7 @@ import controller
 import threading
 from DISClib.ADT import list as lt
 assert cf
-sys.setrecursionlimit(2 ** 20)
+sys.setrecursionlimit(2 ** 21)
 
 """
 La vista se encarga de la interacción con el usuario
@@ -66,6 +66,7 @@ def option2(cont):
     print("Cargando la información de vuelos, rutas, aeropuertos y ciudades")
     controller.loadTodo(cont, airports, routes, cities)
     primero = controller.FirstAirport(cont)
+    print("Informacion del primer aeropuerto en ser cargado:")
     printPrimero(primero)
     grafo1 = cont["Di-aeropuertos"]
     numedges1 = controller.totalRoutes(grafo1)
@@ -80,7 +81,7 @@ def option2(cont):
     tamanio = controller.sizeLista(lista)[0]
     ultimo = controller.sizeLista(lista)[1]
     info_utlimo = controller.infoUltimo(cont, ultimo)
-    tamanio1 = controller.sizeMapa(cont)
+    #tamanio1 = controller.sizeMapa(cont)
     print("**"*56)
     print("Información del Digrafo de aeropuertos conectados por vuelos entre sí")
     print("Numero de vertices (aeropuertos): " +str(numvertex1))
@@ -97,7 +98,7 @@ def option2(cont):
     print("Información de la última ciudad cargada en el grafo: ")
     printInfoUltimo(info_utlimo)
     print("**"*56)
-    print("Total de ciudades disponibles: "+str(tamanio1))
+    
     
 
     
