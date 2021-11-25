@@ -20,10 +20,10 @@
  * along withthis program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
-from DISClib.ADT.graph import numEdges
 import config as cf
 import sys
 import controller
+import threading
 from DISClib.ADT import list as lt
 assert cf
 
