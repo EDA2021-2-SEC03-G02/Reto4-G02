@@ -70,6 +70,7 @@ def addAirport(analyzer, airport):
     mp.put(mapa, airport["IATA"], airport)
     lista = analyzer["air"]
     lt.addLast(lista, airport)
+    addRoutesGraphCities(analyzer, airport)
 
 def addRoutesGraph(analyzer, route):
     airport1 = route["Departure"]
@@ -78,6 +79,25 @@ def addRoutesGraph(analyzer, route):
     addAirportVertex(analyzer, airport1)
     addAirportVertex(analyzer, airport2)
     addConnection(analyzer, airport1, airport2, distance)
+
+def addRoutesGraphCities(analyzer, airport):
+    iata = airport["IATA"]
+    ciudad = airport["City"]
+    distance = distanciaCoordenadas(iata, ciudad)
+    addGraphCitiesVertex(analyzer, iata)
+
+def distanciaCoordenadas(iata, ciudad):
+    None
+
+def addGraphCitiesVertex(analyzer, info):
+    try:
+        if not gr.containsVertex(analyzer['ciudad-iata'], info):
+            gr.insertVertex(analyzer['ciudad-iata'], info)
+        return analyzer
+    except Exception as exp:
+        error.reraise(exp, 'model:addstop')
+
+
 
 def addAirportVertex(analyzer, airport):
     try:
@@ -142,6 +162,8 @@ def FirstAirport(analyzer):
     lista = analyzer["air"]
     primera = lt.firstElement(lista)
     return primera
+
+
 # Construccion de modelos
 
 # Funciones para agregar informacion al catalogo
