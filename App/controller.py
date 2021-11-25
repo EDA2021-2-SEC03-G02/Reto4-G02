@@ -68,6 +68,9 @@ def totalAirports(grafo):
 def FirstAirport(analyzer):
     return model.FirstAirport(analyzer)
 
+def sizeLista(lista):
+    return model.sizeLista(lista)
+
 
 
 

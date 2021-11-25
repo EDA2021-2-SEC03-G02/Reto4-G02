@@ -63,6 +63,7 @@ def newAnalyzer():
                                    loadfactor=0.5,
                                    comparefunction=compareartistMAP)
     analyzer["air"] = lt.newList()     
+    analyzer["cit"] = lt.newList(datastructure="ARRAY_LIST")
     return analyzer                                   
 
 def addAirport(analyzer, airport):
@@ -84,15 +85,31 @@ def addRoutesGraphCities(analyzer, airport):
     iata = airport["IATA"]
     ciudad = airport["City"]
     distance = distanciaCoordenadas(iata, ciudad)
-    addGraphCitiesVertex(analyzer, iata)
+    addGraphCitiesVertexIata(analyzer, iata)
+    addGraphCitiesVertexCit(analyzer, ciudad)
+    addConnection2(analyzer, iata, ciudad, distance)
+
+def addConnection2(analyzer, iata, ciudad, distance):
+    edge = gr.getEdge(analyzer['ciudad-iata'], iata, ciudad)
+    if edge is None:
+        gr.addEdge(analyzer['ciudad-iata'], iata, ciudad, distance)
 
 def distanciaCoordenadas(iata, ciudad):
-    None
+    return 1
 
-def addGraphCitiesVertex(analyzer, info):
+def addGraphCitiesVertexIata(analyzer, info):
     try:
         if not gr.containsVertex(analyzer['ciudad-iata'], info):
             gr.insertVertex(analyzer['ciudad-iata'], info)
+        return analyzer
+    except Exception as exp:
+        error.reraise(exp, 'model:addstop')
+
+def addGraphCitiesVertexCit(analyzer, info):
+    try:
+        if not gr.containsVertex(analyzer['ciudad-iata'], info):
+            gr.insertVertex(analyzer['ciudad-iata'], info)
+            lt.addLast(analyzer["cit"], info)
         return analyzer
     except Exception as exp:
         error.reraise(exp, 'model:addstop')
@@ -162,6 +179,10 @@ def FirstAirport(analyzer):
     lista = analyzer["air"]
     primera = lt.firstElement(lista)
     return primera
+
+def sizeLista(lista):
+    return lt.size(lista)
+    
 
 
 # Construccion de modelos

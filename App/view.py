@@ -70,7 +70,11 @@ def option2(cont):
     grafo2 = cont["NO-aeropuertos"]
     numedges2 = controller.totalRoutes(grafo2)
     numvertex2 = controller.totalAirports(grafo2)
-    
+    grafo3 = cont["ciudad-iata"]
+    numedges3 = controller.totalRoutes(grafo3)
+    numvertex3 = controller.totalAirports(grafo3)
+    lista = cont["cit"]
+    tamanio = controller.sizeLista(lista)
     print("**"*56)
     print("Información del Digrafo de aeropuertos conectados por vuelos entre sí")
     print("Numero de vertices (aeropuertos): " +str(numvertex1))
@@ -79,6 +83,14 @@ def option2(cont):
     print("Informacion del grafo NO dirigido de aeropuertos con vuelos disponibles en ambas direcciones")
     print("Numero de vertices (aeropuertos): " +str(numvertex2))
     print("Numero de arcos: " +str(numedges2))
+    print("**"*56)
+    print("Información del grafo no direccionado que representa las ciudades y sus aeropuertos")
+    print("Numero de vertices (aeropuertos y ciudades): " +str(numvertex3))
+    print("Numero de arcos: " +str(numedges3))
+    print("Total de ciudades: "+str(tamanio))
+    print("**"*56)
+    print("Información de la última ciudad cargada")
+
     
 
 """
