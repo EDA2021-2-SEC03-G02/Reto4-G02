@@ -50,21 +50,26 @@ def newAnalyzer():
                                               directed=False,
                                               size=14000,
                                               comparefunction=compareStopIds)
-    analyzer['aeropuertos'] = mp.newMap(numelements=14000,
-                                     maptype='PROBING',
-                                     comparefunction=compareStopIds)
+    analyzer['aeropuertos'] = mp.newMap(10000,
+                                   maptype='PROBING',
+                                   loadfactor=0.5,
+                                   comparefunction=compareartistMAP) 
     analyzer['ciudad-iata'] = gr.newGraph(datastructure='ADJ_LIST',
                                               directed=False,
                                               size=14000,
                                               comparefunction=compareStopIds)
-    analyzer['ciudades'] = mp.newMap(numelements=14000,
-                                     maptype='PROBING',
-                                     comparefunction=compareStopIds)       
+    analyzer['ciudades'] = mp.newMap(10000,
+                                   maptype='PROBING',
+                                   loadfactor=0.5,
+                                   comparefunction=compareartistMAP)
+    analyzer["air"] = lt.newList()     
     return analyzer                                   
 
 def addAirport(analyzer, airport):
     mapa = analyzer["aeropuertos"]
     mp.put(mapa, airport["IATA"], airport)
+    lista = analyzer["air"]
+    lt.addLast(lista, airport)
 
 def addRoutesGraph(analyzer, route):
     airport1 = route["Departure"]
@@ -132,6 +137,11 @@ def totalAirports(grafo):
 
 def totalRoutes(grafo):
     return gr.numEdges(grafo)
+
+def FirstAirport(analyzer):
+    lista = analyzer["air"]
+    primera = lt.firstElement(lista)
+    return primera
 # Construccion de modelos
 
 # Funciones para agregar informacion al catalogo
@@ -143,6 +153,14 @@ def totalRoutes(grafo):
 # Funciones utilizadas para comparar elementos dentro de una lista
 
 # Funciones de ordenamiento
+def compareartistMAP(keyname, artist):
+    artistEntry = me.getKey(artist)
+    if (keyname == artistEntry):
+        return 0
+    elif (keyname > artistEntry):
+        return 1
+    else:
+        return -1
 
 
 #Código para calcular la distancia entre dos coordenadas, basado en el código publicado en: http://www.codecodex.com/wiki/Calculate_Distance_Between_Two_Points_on_a_Globe#Python
@@ -189,3 +207,4 @@ def points2distance(start,  end):
     a = math.sin(d_latt/2)**2 + math.cos(start_latt) * math.cos(end_latt) * math.sin(d_long/2)**2
     c = 2 * math.asin(math.sqrt(a))
     return 6371 * c
+

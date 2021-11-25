@@ -65,6 +65,10 @@ def totalRoutes(grafo):
 def totalAirports(grafo):
     return model.totalAirports(grafo)
 
+def FirstAirport(analyzer):
+    return model.FirstAirport(analyzer)
+
+
 
 
 # Inicialización del Catálogo de libros

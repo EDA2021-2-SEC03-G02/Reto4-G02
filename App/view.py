@@ -26,7 +26,7 @@ import controller
 import threading
 from DISClib.ADT import list as lt
 assert cf
-
+sys.setrecursionlimit(2 ** 20)
 
 """
 La vista se encarga de la interacción con el usuario
@@ -45,7 +45,7 @@ def printMenu():
     print("1- Inicializar Analizador")
     print("2- Cargar información de los vuelos del mundo")
     print("3- Encontrar puntos de interconexión aérea")
-    print("4- Encontrar clústeres de tráfico aéreo y saber si dos aeropuertos pertenecen a esta")
+    print("4- Encont1rar clústeres de tráfico aéreo y saber si dos aeropuertos pertenecen a esta")
     print("5- Encontrar la ruta más corta entre dos ciudades")
     print("6- Utilizar millas de viajero para conocer la mayor cantidad de ciudades")
     print("7- Cuantificar el efecto de un aeropuerto cerrado")
@@ -54,9 +54,16 @@ def printMenu():
 
 catalog = None
 
+def printPrimero(primero):
+    print("El primer aeropuerto cargado fue: ")
+    print("Nombre: " +primero["Name"]+", Ciudad: "+primero["City"]+", País: "+primero["Country"]+", Latitud: "+primero["Latitude"]+", Longitud: "+primero["Longitude"])
+
+
 def option2(cont):
     print("Cargarndo la información de vuelos, rutas, aeropuertos y ciuades")
     controller.loadTodo(cont, airports, routes, cities)
+    primero = controller.FirstAirport(cont)
+    printPrimero(primero)
     grafo1 = cont["Di-aeropuertos"]
     numedges1 = controller.totalRoutes(grafo1)
     numvertex1 = controller.totalAirports(grafo1)
