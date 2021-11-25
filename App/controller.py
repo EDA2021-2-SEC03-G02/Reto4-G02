@@ -72,7 +72,8 @@ def sizeLista(lista):
     return model.sizeLista(lista)
 def infoUltimo(analyzer, ultimo):
     return model.infoUltimo(analyzer, ultimo)
-
+def sizeMapa(analyzer):
+    return sizeMapa(analyzer)
 
 
 

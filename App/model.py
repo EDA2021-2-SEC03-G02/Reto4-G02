@@ -190,7 +190,9 @@ def infoUltimo(analyzer, ultimo):
     print(pareja)
     info = me.getValue(pareja)
     return info
-
+def sizeMapa(analyzer):
+    mapa = analyzer["ciudades"]
+    return mp.size(mapa)
 
 
 

@@ -63,7 +63,7 @@ def printInfoUltimo(ultimo):
 
 
 def option2(cont):
-    print("Cargarndo la información de vuelos, rutas, aeropuertos y ciuades")
+    print("Cargando la información de vuelos, rutas, aeropuertos y ciudades")
     controller.loadTodo(cont, airports, routes, cities)
     primero = controller.FirstAirport(cont)
     printPrimero(primero)
@@ -80,6 +80,7 @@ def option2(cont):
     tamanio = controller.sizeLista(lista)[0]
     ultimo = controller.sizeLista(lista)[1]
     info_utlimo = controller.infoUltimo(cont, ultimo)
+    tamanio1 = controller.sizeMapa(cont)
     print("**"*56)
     print("Información del Digrafo de aeropuertos conectados por vuelos entre sí")
     print("Numero de vertices (aeropuertos): " +str(numvertex1))
@@ -92,10 +93,12 @@ def option2(cont):
     print("Información del grafo no direccionado que representa las ciudades y sus aeropuertos")
     print("Numero de vertices (aeropuertos y ciudades): " +str(numvertex3))
     print("Numero de arcos: " +str(numedges3))
-    print("Total de ciudades: "+str(tamanio))
-    print("**"*56)
-    print("Información de la última ciudad cargada: ")
+    print("Total de ciudades en el grafo: "+str(tamanio))
+    print("Información de la última ciudad cargada en el grafo: ")
     printInfoUltimo(info_utlimo)
+    print("**"*56)
+    print("Total de ciudades disponibles: "+str(tamanio1))
+    
 
     
 
