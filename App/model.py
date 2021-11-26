@@ -33,6 +33,7 @@ from DISClib.Algorithms.Sorting import shellsort as sa
 from DISClib.ADT.graph import gr
 from DISClib.Utils import error as error
 assert cf
+from DISClib.ADT import orderedmap as om
 
 """
 Se define la estructura de un catálogo de videos. El catálogo tendrá dos listas, una para los videos, otra para las categorias de
@@ -58,7 +59,11 @@ def newAnalyzer():
                                               directed=False,
                                               size=14000,
                                               comparefunction=compareStopIds)
-    analyzer['ciudades'] = mp.newMap(10000,
+    analyzer['ciudades_id'] = mp.newMap(10000,
+                                   maptype='PROBING',
+                                   loadfactor=0.5,
+                                   comparefunction=compareartistMAP)
+    analyzer["ciudades_nombre"] = om.newMap(10000,
                                    maptype='PROBING',
                                    loadfactor=0.5,
                                    comparefunction=compareartistMAP)
@@ -154,8 +159,33 @@ def addConnection(analyzer, airport1, airport2, distance):
 
 
 def addCiudad(analyzer, ciudad):
-    mapa = analyzer["ciudades"]
-    mp.put(mapa, ciudad["city"], ciudad)
+    mapa = analyzer["ciudades_id"]
+    mp.put(mapa, ciudad["id"], ciudad)
+    mapa1 = analyzer["ciudades_nombre"]
+    updateCiudadesNombre(mapa1, ciudad)
+
+def updateCiudadesNombre(mapa1, ciudad):
+    nombre = ciudad['city']
+    entry = om.get(mapa1, nombre)
+    if entry is None:
+        cityentry = newCityEntry(ciudad)
+        om.put(mapa1, nombre, cityentry)
+    else:
+        cityentry = me.getValue(entry)
+        addCityIndex(cityentry, ciudad)
+    return mapa1
+
+def newCityEntry(ciudad):
+    entry = {'FirstCity': None}
+    entry['FirstCity'] = lt.newList('ARRAY_LIST')
+    First = entry['FirstUFO']
+    lt.addLast(First, ciudad)
+    return entry
+
+def addCityIndex(cityentry, ciudad):
+    first= cityentry['FirstUFO']
+    lt.addLast(first,ciudad)
+    return cityentry
 
 def compareStopIds(stop, keyvaluestop):
     """
