@@ -95,10 +95,10 @@ def option2(cont):
     print("Numero de vertices (aeropuertos): " +str(numvertex2))
     print("Numero de arcos: " +str(numedges2))
     print("**"*56)
-    print("Información del grafo no direccionado que representa las ciudades y sus aeropuertos")
+    """print("Información del grafo no direccionado que representa las ciudades y sus aeropuertos")
     print("Numero de vertices (aeropuertos y ciudades): " +str(numvertex3))
     print("Numero de arcos: " +str(numedges3))
-    print("Total de ciudades en el grafo: "+str(tamanio))
+    print("Total de ciudades en el grafo: "+str(tamanio))"""
     print("Información de la última ciudad cargada en el grafo: ")
     printInfoUltimo(info_utlimo)
     print("**"*56)
