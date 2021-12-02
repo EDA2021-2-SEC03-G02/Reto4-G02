@@ -41,7 +41,7 @@ los mismos.
 """
 
 def newAnalyzer():
-    analyzer = {"Di-aeropuertos": None, "No-aeropuertos": None, "aeropuertos": None, "ciudad-iata": None, "ciudades": None}
+    analyzer = {"Di-aeropuertos": None, "No-aeropuertos": None, "aeropuertos": None, "ciudad-iata": None, "ciudades_id": None, "ciudades_nombre": None}
     
     analyzer['Di-aeropuertos'] = gr.newGraph(datastructure='ADJ_LIST',
                                               directed=True,
@@ -63,7 +63,7 @@ def newAnalyzer():
                                    maptype='PROBING',
                                    loadfactor=0.5,
                                    comparefunction=compareartistMAP)
-    analyzer["ciudades_nombre"] = om.newMap(10000,
+    analyzer["ciudades_nombre"] = mp.newMap(10000,
                                    maptype='PROBING',
                                    loadfactor=0.5,
                                    comparefunction=compareartistMAP)
@@ -114,7 +114,6 @@ def addGraphCitiesVertexCit(analyzer, info):
     try:
         if not gr.containsVertex(analyzer['ciudad-iata'], info):
             gr.insertVertex(analyzer['ciudad-iata'], info)
-            lt.addLast(analyzer["cit"], info)
         return analyzer
     except Exception as exp:
         error.reraise(exp, 'model:addstop')
@@ -163,13 +162,14 @@ def addCiudad(analyzer, ciudad):
     mp.put(mapa, ciudad["id"], ciudad)
     mapa1 = analyzer["ciudades_nombre"]
     updateCiudadesNombre(mapa1, ciudad)
+    lt.addLast(analyzer["cit"], ciudad["id"])
 
 def updateCiudadesNombre(mapa1, ciudad):
     nombre = ciudad['city']
-    entry = om.get(mapa1, nombre)
+    entry = mp.get(mapa1, nombre)
     if entry is None:
         cityentry = newCityEntry(ciudad)
-        om.put(mapa1, nombre, cityentry)
+        mp.put(mapa1, nombre, cityentry)
     else:
         cityentry = me.getValue(entry)
         addCityIndex(cityentry, ciudad)
@@ -178,12 +178,12 @@ def updateCiudadesNombre(mapa1, ciudad):
 def newCityEntry(ciudad):
     entry = {'FirstCity': None}
     entry['FirstCity'] = lt.newList('ARRAY_LIST')
-    First = entry['FirstUFO']
+    First = entry['FirstCity']
     lt.addLast(First, ciudad)
     return entry
 
 def addCityIndex(cityentry, ciudad):
-    first= cityentry['FirstUFO']
+    first= cityentry['FirstCity']
     lt.addLast(first,ciudad)
     return cityentry
 
@@ -214,13 +214,13 @@ def sizeLista(lista):
     return lt.size(lista), lt.lastElement(lista)
 
 def infoUltimo(analyzer, ultimo):
-    ultimo = ultimo.replace(" City", "")
-    mapa = analyzer["ciudades"]
+    print(ultimo)
+    mapa = analyzer["ciudades_id"]
     pareja = mp.get(mapa, ultimo)
     info = me.getValue(pareja)
     return info
 def sizeMapa(analyzer):
-    mapa = analyzer["ciudades"]
+    mapa = analyzer["ciudades_id"]
     return mp.size(mapa)
 
 
