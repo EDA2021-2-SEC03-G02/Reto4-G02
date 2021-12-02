@@ -61,6 +61,10 @@ def printPrimero(primero):
 def printInfoUltimo(ultimo):
     print("Nombre: " +ultimo["city"]+ ", Poblacion: " +ultimo["population"]+", Latitud: "+ultimo["lat"] +", Longitud: "+ultimo["lng"])
 
+def printListaCiudades(lista):
+    for ciudad in lt.iterator(lista):
+        print("**"*56)
+        print("Nombre: " +ciudad["city"]+", País: "+ciudad["country"]+", Latitud: "+ciudad["lat"]+", Longitud: "+ciudad["lng"]+", ID: "+ciudad["id"])
 
 def option2(cont):
     print("Cargando la información de vuelos, rutas, aeropuertos y ciudades")
@@ -117,17 +121,27 @@ while True:
     elif int(inputs[0]) == 3:
         pass
     elif int(inputs[0]) == 4:
-        airport1 = input("Por favor escriba el nombre del código IATA del aeropuerto 1")
-        airport2 = input("Por favor escriba el nombre del código IATA del aeropuerto 2")
+        airport1 = input("Por favor escriba el nombre del código IATA del aeropuerto 1: ")
+        airport2 = input("Por favor escriba el nombre del código IATA del aeropuerto 2: ")
     elif int(inputs[0]) == 5:
-        ciudad1 = input("Por favor escriba el nombre de la ciudad de origen")
-        ciudad2 = input("Por favor escriba el nombre de la ciudad de destino")
+        ciudad1 = input("Por favor escriba el nombre de la ciudad de origen: ")
         opciones1 = controller.findCityName(cont, ciudad1)
+        print("A continuación se muestran todas las posibles opciones de ciudades con el nombre "+ciudad1)
+        printListaCiudades(opciones1)
+        id1 = input("Por favor digite el código de la ciudad que desea seleccionar como origen del recorrido: ")
+        print("Ciudad de origen guardada")
+        ciudad2 = input("Por favor escriba el nombre de la ciudad de destino: ")
+        print("A continuación se muestran todas las posibles opciones de ciudades con el nombre "+ciudad1)
+        opciones2 = controller.findCityName(cont, ciudad2)
+        printListaCiudades(opciones2)
+        id2 = input("Por favor digite el código de la ciudad que desea seleccionar como destino: ")
+        print("Ciudad de destino guardada")
+        print("Inciando búsqueda de la ruta más corta entre las ciudades con ID "+id1+" y "+id2)
     elif int(inputs[0]) == 6:
-        ciudad = input("Por favor escriba su ciudad de origen")
-        millas = input("Por favor escriba su cantidad de millas de viajero")
+        ciudad = input("Por favor escriba su ciudad de origen: ")
+        millas = input("Por favor escriba su cantidad de millas de viajero: ")
     elif int(inputs[0]) == 7:
-        airport = input("Por favor escriba el código IATA del aeropuerto que está fuera de funcionamiento")
+        airport = input("Por favor escriba el código IATA del aeropuerto que está fuera de funcionamiento: ")
 
     else:
         sys.exit(0)

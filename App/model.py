@@ -251,7 +251,10 @@ def compareartistMAP(keyname, artist):
 
 def findCityName(analyzer, ciudad):
     mapa = analyzer["ciudades_nombre"]
-    
+    pareja = mp.get(mapa, ciudad)
+    info = me.getValue(pareja)
+    lista = info["FirstCity"]
+    return lista
 
 
 
