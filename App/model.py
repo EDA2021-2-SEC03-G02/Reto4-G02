@@ -77,6 +77,7 @@ def addAirport(analyzer, airport):
     lista = analyzer["air"]
     lt.addLast(lista, airport)
     addRoutesGraphCities(analyzer, airport)
+    addAirportVertex(analyzer, airport["IATA"])
 
 def addRoutesGraph(analyzer, route):
     airport1 = route["Departure"]
