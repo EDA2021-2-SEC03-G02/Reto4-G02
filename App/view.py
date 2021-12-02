@@ -81,7 +81,7 @@ def option2(cont):
     tamanio = controller.sizeLista(lista)[0]
     ultimo = controller.sizeLista(lista)[1]
     info_utlimo = controller.infoUltimo(cont, ultimo)
-    #tamanio1 = controller.sizeMapa(cont)
+    tamanio1 = controller.sizeMapa(cont)
     print("**"*56)
     print("Información del Digrafo de aeropuertos conectados por vuelos entre sí")
     print("Numero de vertices (aeropuertos): " +str(numvertex1))
