@@ -79,6 +79,9 @@ def sizeMapa(analyzer):
 def findCityName(analyzer, ciudad):
     return model.findCityName(analyzer, ciudad)
 
+def getInfo(analyzer, id):
+    return model.getInfo(analyzer, id)
+
 # Inicialización del Catálogo de libros
 
 # Funciones para la carga de datos

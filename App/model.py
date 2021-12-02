@@ -256,6 +256,12 @@ def findCityName(analyzer, ciudad):
     lista = info["FirstCity"]
     return lista
 
+def getInfo(analyzer, id):
+    mapa = analyzer["ciudades_id"]
+    pareja = mp.get(mapa, id)
+    info = me.getValue(pareja)
+    return info
+
 
 
 
