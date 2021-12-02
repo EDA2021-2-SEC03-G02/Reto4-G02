@@ -69,6 +69,7 @@ def newAnalyzer():
                                    comparefunction=compareartistMAP)
     analyzer["air"] = lt.newList()     
     analyzer["cit"] = lt.newList(datastructure="ARRAY_LIST")
+    analyzer["air_iata"] = lt.newList()
     return analyzer                                   
 
 def addAirport(analyzer, airport):
@@ -89,19 +90,14 @@ def addRoutesGraph(analyzer, route):
 
 def addRoutesGraphCities(analyzer, airport):
     iata = airport["IATA"]
-    ciudad = airport["City"]
-    distance = distanciaCoordenadas(iata, ciudad)
     addGraphCitiesVertexIata(analyzer, iata)
-    addGraphCitiesVertexCit(analyzer, ciudad)
-    addConnection2(analyzer, iata, ciudad, distance)
+    #lt.addLast(analyzer["air_iata"], iata)
 
 def addConnection2(analyzer, iata, ciudad, distance):
     edge = gr.getEdge(analyzer['ciudad-iata'], iata, ciudad)
     if edge is None:
         gr.addEdge(analyzer['ciudad-iata'], iata, ciudad, distance)
 
-def distanciaCoordenadas(iata, ciudad):
-    return 1
 
 def addGraphCitiesVertexIata(analyzer, info):
     try:
@@ -111,13 +107,6 @@ def addGraphCitiesVertexIata(analyzer, info):
     except Exception as exp:
         error.reraise(exp, 'model:addstop')
 
-def addGraphCitiesVertexCit(analyzer, info):
-    try:
-        if not gr.containsVertex(analyzer['ciudad-iata'], info):
-            gr.insertVertex(analyzer['ciudad-iata'], info)
-        return analyzer
-    except Exception as exp:
-        error.reraise(exp, 'model:addstop')
 
 
 
@@ -164,6 +153,21 @@ def addCiudad(analyzer, ciudad):
     mapa1 = analyzer["ciudades_nombre"]
     updateCiudadesNombre(mapa1, ciudad)
     lt.addLast(analyzer["cit"], ciudad["id"])
+    #addCiudadGrafoIATA_ciudad(analyzer, ciudad)
+
+def addCiudadGrafoIATA_ciudad(analyzer, ciudad):
+    addGraphCitiesVertexIata(analyzer, ciudad["id"])
+    for airport in lt.iterator(analyzer["air"]):
+        lat1 = airport["Latitude"]
+        lon1 = airport["Longitude"]
+        lat2 = ciudad["lat"]
+        lon2 = ciudad["lng"]
+        distancia = haversine(float(lon1), float(lat1), float(lon2), float(lat2))
+        iata = airport["IATA"]
+        city = ciudad["id"]
+        addConnection2(analyzer, iata, city, distancia)
+        print("OK")
+
 
 def updateCiudadesNombre(mapa1, ciudad):
     nombre = ciudad['city']
