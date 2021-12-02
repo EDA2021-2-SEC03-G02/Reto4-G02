@@ -246,48 +246,23 @@ def compareartistMAP(keyname, artist):
         return -1
 
 
-#Código para calcular la distancia entre dos coordenadas, basado en el código publicado en: http://www.codecodex.com/wiki/Calculate_Distance_Between_Two_Points_on_a_Globe#Python
 
-def decdeg2dms(dd):
-    mnt,sec = divmod(dd*3600,60)
-    deg,mnt = divmod(mnt,60)
-    return deg,mnt,sec
+#Req 3
 
-def recalculate_coordinate(val,  _as=None):
+def findCityName(analyzer, ciudad):
+    mapa = analyzer["ciudades_nombre"]
+    
 
-  deg,  min,  sec = val
-  # pass outstanding values from right to left
-  min = (min or 0) + int(sec) / 60
-  sec = sec % 60
-  deg = (deg or 0) + int(min) / 60
-  min = min % 60
-  # pass decimal part from left to right
-  dfrac,  dint = math.modf(deg)
-  min = min + dfrac * 60
-  deg = dint
-  mfrac,  mint = math.modf(min)
-  sec = sec + mfrac * 60
-  min = mint
-  if _as:
-    sec = sec + min * 60 + deg * 3600
-    if _as == 'sec': return sec
-    if _as == 'min': return sec / 60
-    if _as == 'deg': return sec / 3600
-  return deg,  min,  sec
-      
-def points2distance(start,  end):
-    longitudciudad=decdeg2dms(start[1])
-    longitudAirport=decdeg2dms(end[1])
-    latitudciudad=decdeg2dms(start[0])
-    latitudAirport=decdeg2dms(end[0])
 
-    start_long = math.radians(recalculate_coordinate(longitudciudad,  'deg'))
-    start_latt = math.radians(recalculate_coordinate(latitudciudad,  'deg'))
-    end_long = math.radians(recalculate_coordinate(longitudAirport,  'deg'))
-    end_latt = math.radians(recalculate_coordinate(latitudAirport,  'deg'))
-    d_latt = end_latt - start_latt
-    d_long = end_long - start_long
-    a = math.sin(d_latt/2)**2 + math.cos(start_latt) * math.cos(end_latt) * math.sin(d_long/2)**2
-    c = 2 * math.asin(math.sqrt(a))
-    return 6371 * c
+
+
+
+
+
+
+
+
+
+
+
 

@@ -75,7 +75,9 @@ def infoUltimo(analyzer, ultimo):
 def sizeMapa(analyzer):
     return model.sizeMapa(analyzer)
 
-
+#Req3
+def findCityName(analyzer, ciudad):
+    return model.findCityName(analyzer, ciudad)
 
 # Inicialización del Catálogo de libros
 

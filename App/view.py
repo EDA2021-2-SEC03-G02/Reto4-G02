@@ -122,6 +122,7 @@ while True:
     elif int(inputs[0]) == 5:
         ciudad1 = input("Por favor escriba el nombre de la ciudad de origen")
         ciudad2 = input("Por favor escriba el nombre de la ciudad de destino")
+        opciones1 = controller.findCityName(cont, ciudad1)
     elif int(inputs[0]) == 6:
         ciudad = input("Por favor escriba su ciudad de origen")
         millas = input("Por favor escriba su cantidad de millas de viajero")
