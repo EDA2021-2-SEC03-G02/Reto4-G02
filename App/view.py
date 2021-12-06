@@ -34,8 +34,8 @@ Presenta el menu de opciones y por cada seleccion
 se hace la solicitud al controlador para ejecutar la
 operación solicitada
 """
-airports = "airports_full.csv"
-routes = "routes_full.csv"
+airports = "airports-utf8-small.csv"
+routes = "routes-utf8-small.csv"
 cities = "worldcities.csv"
 
 def printMenu():
