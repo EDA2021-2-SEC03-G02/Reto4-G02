@@ -79,6 +79,7 @@ def addAirport(analyzer, airport):
     lt.addLast(lista, airport)
     addRoutesGraphCities(analyzer, airport)
     addAirportVertex(analyzer, airport["IATA"])
+    addAirportVertexNO(analyzer, airport["IATA"])
 
 def addRoutesGraph(analyzer, route):
     airport1 = route["Departure"]
@@ -86,7 +87,10 @@ def addRoutesGraph(analyzer, route):
     distance = route["distance_km"]
     addAirportVertex(analyzer, airport1)
     addAirportVertex(analyzer, airport2)
+    addAirportVertexNO(analyzer, airport1)
+    addAirportVertexNO(analyzer, airport2)
     addConnection(analyzer, airport1, airport2, distance)
+    LookBothFlights(analyzer, airport1, airport2, distance)
 
 def addRoutesGraphCities(analyzer, airport):
     iata = airport["IATA"]
@@ -128,8 +132,10 @@ def addAirportVertexNO(analyzer, airport):
     
 def addConnectionNO(analyzer, airport1, airport2, distance):
     edge = gr.getEdge(analyzer['NO-aeropuertos'], airport1, airport2)
+    print(airport1+"-->"+airport2)
     if edge is None:
         gr.addEdge(analyzer['NO-aeropuertos'], airport1, airport2, distance)
+        
 
 def addConnection(analyzer, airport1, airport2, distance):
     edge = gr.getEdge(analyzer['Di-aeropuertos'], airport1, airport2)
@@ -137,14 +143,20 @@ def addConnection(analyzer, airport1, airport2, distance):
     #hacer todo aca para no dirijido, hacer edge 2 y revisar y todo eso
     #if edge is None:
     gr.addEdge(analyzer['Di-aeropuertos'], airport1, airport2, distance)
-    if edge is not None and edge2 is not None:
-        addAirportVertexNO(analyzer, airport1)
-        addAirportVertexNO(analyzer, airport2)
+    """if (edge is not None) and (edge2 is not None):
+        #print(airport1)
+        #print(airport2)
         addConnectionNO(analyzer, airport1, airport2, distance)
+        if (airport1=="DXB" and airport2 =="LED")or(airport2=="DXB" and airport1 =="LED"):
+            print("AAAAAA")"""
 
     return analyzer
 
-
+def LookBothFlights(analyzer,airport1,airport2,distance):
+    edge1 = gr.getEdge(analyzer["Di-aeropuertos"], airport1, airport2)
+    edge2 = gr.getEdge(analyzer["Di-aeropuertos"], airport2, airport1)
+    if edge1 != None and edge2 != None:
+        addConnectionNO(analyzer, airport1, airport2, distance)    
 
 
 def addCiudad(analyzer, ciudad):
