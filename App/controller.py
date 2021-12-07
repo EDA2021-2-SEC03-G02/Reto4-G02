@@ -78,6 +78,8 @@ def sizeMapa(analyzer):
 #Req 1
 def Top5Conectados(analyzer):
     return model.Top5Conectados(analyzer)
+def infoIata(iata, cont):
+    return model.infoIata(iata, cont)
 
 #Req3
 def findCityName(analyzer, ciudad):

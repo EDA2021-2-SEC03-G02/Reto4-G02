@@ -284,7 +284,6 @@ def Top5Conectados(analyzer):
         tupla = ElDegree(grafo, vertex)
         total_vertex = tupla[0]+tupla[1]
         if total_vertex>0:
-            print(vertex)
             lt.addLast(lista, vertex)
             if total_vertex > primero:
                 primero = total_vertex
@@ -309,8 +308,14 @@ def Top5Conectados(analyzer):
     print(lista_final)
     return lista_final, lt.size(lista)
 
-def info_aeropuerto_req1(lista):
-    None
+def infoIata(iata, analyzer):
+    mapa = analyzer["aeropuertos"]
+    entry = mp.get(mapa, iata)
+    value = me.getValue(entry)
+    nombre = value["Name"]
+    ciudad = value["City"]
+    pais = value["Country"]
+    return nombre, ciudad, pais
     
 
     
