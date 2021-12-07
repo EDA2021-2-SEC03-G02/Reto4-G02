@@ -265,6 +265,56 @@ def compareartistMAP(keyname, artist):
 def ElDegree(graph, airport):
     return gr.indegree(graph, airport), gr.outdegree(graph, airport) 
 
+def Top5Conectados(analyzer):
+    grafo = analyzer["Di-aeropuertos"]
+    vertices = gr.vertices(grafo)
+    lista = lt.newList("ARRAY_LIST")
+    lista_final = lt.newList("ARRAY_LIST")
+    primero = -1
+    primis = ""
+    segundo = -1
+    segus = ""
+    tercero = -1
+    tercis =""
+    cuarto = -1
+    cuartis = ""
+    quinto = -1
+    quintis = ""
+    for vertex in lt.iterator(vertices):
+        tupla = ElDegree(grafo, vertex)
+        total_vertex = tupla[0]+tupla[1]
+        if total_vertex>0:
+            print(vertex)
+            lt.addLast(lista, vertex)
+            if total_vertex > primero:
+                primero = total_vertex
+                primis = vertex
+            elif total_vertex > segundo:
+                segundo = total_vertex
+                segus = vertex
+            elif total_vertex > tercero:
+                tercero = total_vertex
+                tercis = vertex
+            elif total_vertex > cuarto:
+                cuarto = total_vertex
+                cuartis = vertex
+            elif total_vertex > quinto:
+                quinto = total_vertex
+                quintis = vertex
+    lt.addLast(lista_final, (primero, primis, ElDegree(grafo,primis)[0], ElDegree(grafo, primis)[1]))
+    lt.addLast(lista_final, (segundo, segus,ElDegree(grafo,segus)[0], ElDegree(grafo, segus)[1]))
+    lt.addLast(lista_final, (tercero, tercis,ElDegree(grafo,tercis)[0], ElDegree(grafo, tercis)[1]))
+    lt.addLast(lista_final, (cuarto, cuartis,ElDegree(grafo,cuartis)[0], ElDegree(grafo, cuartis)[1]))
+    lt.addLast(lista_final, (quinto, quintis,ElDegree(grafo,quintis)[0], ElDegree(grafo, quintis)[1]))
+    print(lista_final)
+    return lista_final, lt.size(lista)
+    
+
+    
+
+
+        
+
 
 #Req 3
 

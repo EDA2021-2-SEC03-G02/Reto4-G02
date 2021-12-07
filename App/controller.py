@@ -76,8 +76,8 @@ def sizeMapa(analyzer):
     return model.sizeMapa(analyzer)
 
 #Req 1
-def ElDegree(graph, airport):
-    return model.ElDegree(graph, airport)
+def Top5Conectados(analyzer):
+    return model.Top5Conectados(analyzer)
 
 #Req3
 def findCityName(analyzer, ciudad):
