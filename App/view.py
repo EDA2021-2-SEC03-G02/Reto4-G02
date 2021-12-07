@@ -119,7 +119,12 @@ while True:
     elif int(inputs[0]) == 2:
         option2(cont)
     elif int(inputs[0]) == 3:
-        lista = controller.Top5Conectados(cont)
+        tupla = controller.Top5Conectados(cont)
+        lista = tupla[0]
+        tamanio = tupla[1]
+        print("El número de aeropuertos conectados en el grafo es: "+str(tamanio))
+        print("A continuación se muestran los 5 aeropuertos más interconectados")
+        
     elif int(inputs[0]) == 4:
         airport1 = input("Por favor escriba el nombre del código IATA del aeropuerto 1: ")
         airport2 = input("Por favor escriba el nombre del código IATA del aeropuerto 2: ")

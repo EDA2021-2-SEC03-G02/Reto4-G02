@@ -308,6 +308,9 @@ def Top5Conectados(analyzer):
     lt.addLast(lista_final, (quinto, quintis,ElDegree(grafo,quintis)[0], ElDegree(grafo, quintis)[1]))
     print(lista_final)
     return lista_final, lt.size(lista)
+
+def info_aeropuerto_req1(lista):
+    None
     
 
     
