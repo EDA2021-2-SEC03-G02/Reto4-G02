@@ -68,8 +68,8 @@ def printListaCiudades(lista):
 
 def printMasConectados(lista,cont):
     for tupla in lt.iterator(lista):
-        total = tupla[0]
-        iata = tupla[1]
+        iata = tupla[0]
+        total = tupla[1]
         inbound = tupla[2]
         outbound = tupla[3]
         info_iata = controller.infoIata(iata, cont)
@@ -137,7 +137,7 @@ while True:
         tamanio = tupla[1]
         print("El número de aeropuertos conectados en el grafo es: "+str(tamanio))
         print("A continuación se muestran los 5 aeropuertos más interconectados")
-        #printMasConectados(lista, cont)
+        printMasConectados(lista, cont)
         
     elif int(inputs[0]) == 4:
         airport1 = input("Por favor escriba el nombre del código IATA del aeropuerto 1: ")
