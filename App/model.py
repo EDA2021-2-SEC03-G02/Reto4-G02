@@ -132,7 +132,6 @@ def addAirportVertexNO(analyzer, airport):
     
 def addConnectionNO(analyzer, airport1, airport2, distance):
     edge = gr.getEdge(analyzer['NO-aeropuertos'], airport1, airport2)
-    print(airport1+"-->"+airport2)
     if edge is None:
         gr.addEdge(analyzer['NO-aeropuertos'], airport1, airport2, distance)
         
