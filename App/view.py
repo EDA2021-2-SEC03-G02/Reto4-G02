@@ -119,7 +119,7 @@ while True:
     elif int(inputs[0]) == 2:
         option2(cont)
     elif int(inputs[0]) == 3:
-        pass
+        print(str(controller.ElDegree(cont["Di-aeropuertos"], "LED")))
     elif int(inputs[0]) == 4:
         airport1 = input("Por favor escriba el nombre del código IATA del aeropuerto 1: ")
         airport2 = input("Por favor escriba el nombre del código IATA del aeropuerto 2: ")

@@ -261,6 +261,9 @@ def compareartistMAP(keyname, artist):
     else:
         return -1
 
+#Req 1
+def ElDegree(graph, airport):
+    return gr.indegree(graph, airport), gr.outdegree(graph, airport) 
 
 
 #Req 3

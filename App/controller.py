@@ -75,12 +75,18 @@ def infoUltimo(analyzer, ultimo):
 def sizeMapa(analyzer):
     return model.sizeMapa(analyzer)
 
+#Req 1
+def ElDegree(graph, airport):
+    return model.ElDegree(graph, airport)
+
 #Req3
 def findCityName(analyzer, ciudad):
     return model.findCityName(analyzer, ciudad)
 
 def getInfo(analyzer, id):
     return model.getInfo(analyzer, id)
+
+
 
 # Inicialización del Catálogo de libros
 
