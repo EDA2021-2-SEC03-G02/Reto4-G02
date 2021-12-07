@@ -137,7 +137,7 @@ while True:
         tamanio = tupla[1]
         print("El número de aeropuertos conectados en el grafo es: "+str(tamanio))
         print("A continuación se muestran los 5 aeropuertos más interconectados")
-        printMasConectados(lista, cont)
+        #printMasConectados(lista, cont)
         
     elif int(inputs[0]) == 4:
         airport1 = input("Por favor escriba el nombre del código IATA del aeropuerto 1: ")

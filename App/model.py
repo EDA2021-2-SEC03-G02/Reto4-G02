@@ -35,6 +35,7 @@ from DISClib.Utils import error as error
 assert cf
 from DISClib.ADT import orderedmap as om        
 from math import radians, cos, sin, asin, sqrt
+from DISClib.Algorithms.Sorting import mergesort as ms
 """
 Se define la estructura de un catálogo de videos. El catálogo tendrá dos listas, una para los videos, otra para las categorias de
 los mismos.
@@ -283,9 +284,11 @@ def Top5Conectados(analyzer):
     for vertex in lt.iterator(vertices):
         tupla = ElDegree(grafo, vertex)
         total_vertex = tupla[0]+tupla[1]
+        t = (vertex, total_vertex, tupla[0], tupla[1])
         if total_vertex>0:
             lt.addLast(lista, vertex)
-            if total_vertex > primero:
+            lt.addLast(lista_final, t)
+            """if total_vertex > primero:
                 primero = total_vertex
                 primis = vertex
             elif total_vertex > segundo:
@@ -305,8 +308,18 @@ def Top5Conectados(analyzer):
     lt.addLast(lista_final, (tercero, tercis,ElDegree(grafo,tercis)[0], ElDegree(grafo, tercis)[1]))
     lt.addLast(lista_final, (cuarto, cuartis,ElDegree(grafo,cuartis)[0], ElDegree(grafo, cuartis)[1]))
     lt.addLast(lista_final, (quinto, quintis,ElDegree(grafo,quintis)[0], ElDegree(grafo, quintis)[1]))
-    print(lista_final)
-    return lista_final, lt.size(lista)
+    print(lista_final)"""
+    sorted_list = ms.sort(lista_final, compareArtistsYearBorn)
+    lista_ff = lt.subList(sorted_list,1,5)
+    print(lista_ff)
+    return lista_ff, lt.size(lista)
+def compareArtistsYearBorn(artist1, artist2):
+    a = int(artist1[1])
+    b = int(artist2[1])
+    if a > b:
+        return 1
+    else:
+        return 0
 
 def infoIata(iata, analyzer):
     mapa = analyzer["aeropuertos"]
