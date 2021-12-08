@@ -81,7 +81,12 @@ def printMasConectados(lista,cont):
 
 def print3airports(lista):
     tamanio = lt.size(lista)
-    
+    if tamanio<6:
+        print("A continuación todos lo aeropuertos afectados:")
+        for x in lt.iterator(lista):
+            primero = controller.infoAirport(cont, x)
+            print("IATA: "+primero["IATA"]+", Nombre: " +primero["Name"]+", Ciudad: "+primero["City"]+", País: "+primero["Country"])
+
 
 def option2(cont):
     print("Cargando la información de vuelos, rutas, aeropuertos y ciudades")
