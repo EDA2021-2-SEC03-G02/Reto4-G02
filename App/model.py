@@ -31,6 +31,7 @@ from DISClib.ADT import map as mp
 from DISClib.DataStructures import mapentry as me
 from DISClib.Algorithms.Sorting import shellsort as sa
 from DISClib.Algorithms.Graphs import dijsktra as dj
+from DISClib.Algorithms.Graphs import prim as pr
 from DISClib.ADT.graph import gr
 from DISClib.Utils import error as error
 assert cf
@@ -386,7 +387,9 @@ def haversine(lon1, lat1, lon2, lat2):
 #Req 4
 def RutaMasParadas(analyzer, km, ciudad):
     grafo = analyzer["NO-aeropuertos"]
-    
+    mst = pr.PrimMST(grafo)
+    print(mst)
+
 
 # Req 5
 def ChaoAirport(analyzer, iata):
