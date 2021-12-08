@@ -156,8 +156,7 @@ while True:
         id2 = input("Por favor digite el código de la ciudad que desea seleccionar como destino: ")
         print("Ciudad de destino guardada")
         print("Inciando búsqueda de la ruta más corta entre las ciudades con ID "+id1+" y "+id2)
-        #info1 = controller.getInfo(cont, id1)
-        #print(info1)
+        aeropuerto1 = controller.getAirportCity(cont, id1)
     elif int(inputs[0]) == 6:
         ciudad = input("Por favor escriba su ciudad de origen: ")
         millas = input("Por favor escriba su cantidad de millas de viajero: ")

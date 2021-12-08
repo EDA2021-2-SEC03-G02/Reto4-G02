@@ -81,6 +81,7 @@ def Top5Conectados(analyzer):
 def infoIata(iata, cont):
     return model.infoIata(iata, cont)
 
+
 #Req3
 def findCityName(analyzer, ciudad):
     return model.findCityName(analyzer, ciudad)
@@ -88,6 +89,8 @@ def findCityName(analyzer, ciudad):
 def getInfo(analyzer, id):
     return model.getInfo(analyzer, id)
 
+def getAirportCity(cont, id1):
+    return model.getAirportCity(cont, id)
 
 
 # Inicialización del Catálogo de libros
