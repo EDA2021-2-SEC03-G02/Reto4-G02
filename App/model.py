@@ -350,7 +350,11 @@ def getAirportCity(analyzer, id):
             final = airport
     return final, menor
 
-
+def infoAirport(analyzer, iata):
+    mapa = analyzer["aeropuertos"]
+    pareja = mp.get(mapa, iata)
+    info = me.getValue(pareja)
+    return info
 
 
 

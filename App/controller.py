@@ -92,6 +92,9 @@ def getInfo(analyzer, id):
 def getAirportCity(cont, id):
     return model.getAirportCity(cont, id)
 
+def infoAirport(analyzer, iata):
+    return model.infoAirport(analyzer, iata)
+
 
 # Inicialización del Catálogo de libros
 

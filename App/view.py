@@ -55,7 +55,6 @@ def printMenu():
 catalog = None
 
 def printPrimero(primero):
-    print("El primer aeropuerto cargado fue: ")
     print("Nombre: " +primero["Name"]+", Ciudad: "+primero["City"]+", País: "+primero["Country"]+", Latitud: "+primero["Latitude"]+", Longitud: "+primero["Longitude"])
 
 def printInfoUltimo(ultimo):
@@ -84,6 +83,7 @@ def option2(cont):
     controller.loadTodo(cont, airports, routes, cities)
     primero = controller.FirstAirport(cont)
     print("Informacion del primer aeropuerto en ser cargado:")
+    print("El primer aeropuerto cargado fue: ")
     printPrimero(primero)
     grafo1 = cont["Di-aeropuertos"]
     numedges1 = controller.totalRoutes(grafo1)
@@ -157,9 +157,20 @@ while True:
         print("Ciudad de destino guardada")
         print("Inciando búsqueda de la ruta más corta entre las ciudades con ID "+id1+" y "+id2)
         origen = controller.getAirportCity(cont, id1)
+        partida = origen[0]
+        d1 = origen[1]
+        partida = controller.infoAirport(cont, partida)
         destino = controller.getAirportCity(cont, id2)
-        print(origen)
-        print(destino)
+        llegada = origen[0]
+        llegada = controller.infoAirport(cont,llegada)
+        d2 = origen[1]
+        print("El aeropuerto que se usará como punto de partida está a una distancia de "+str(d1)+"de la ciudad elegida como origen")
+        print("Ahora, la información de dicho aeropuerto:")
+        printPrimero(partida)
+        print("El aeropuerto que se usará como punto de llegada está a una distancia de "+str(d2)+"de la ciudad elegida como destino")
+        print("Ahora, la información de dicho aeropuerto:")
+        printPrimero(llegada)
+        
     elif int(inputs[0]) == 6:
         ciudad = input("Por favor escriba su ciudad de origen: ")
         millas = input("Por favor escriba su cantidad de millas de viajero: ")
