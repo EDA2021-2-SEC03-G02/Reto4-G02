@@ -392,8 +392,9 @@ def ChaoAirport(analyzer, iata):
     tupla = ElDegree(grafo, iata)
     total_vertex = tupla[0]+tupla[1]
     adyacentes = gr.adjacents(grafo, iata)
-    for x in lt.iterator(adyacentes):
-        print(x)
+    afectados = lt.size(adyacentes)
+    vertex_no = gr.degree(analyzer["NO-aeropuertos"], iata)
+
 
     
 
