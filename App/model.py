@@ -386,22 +386,25 @@ def haversine(lon1, lat1, lon2, lat2):
     return c * r
 
 #Req 4
-def RutaMasParadas(analyzer, km):
+def RutaMasParadas(analyzer, km, d):
     lista = lt.newList()
     vertices = lt.newList()
     grafo = analyzer["NO-aeropuertos"]
     search = pr.PrimMST(grafo)
-    #peso = pr.weightMST(grafo, search)
+    peso = pr.weightMST(grafo, search)
     path = search["mst"]
+    x =[]
     while not q.isEmpty(path):
         edge = q.dequeue(path)
         lt.addLast(lista, edge)
     for arco in lt.iterator(lista):
         verticeA = arco["vertexA"]
-        if verticeA not in vertices:
+        if verticeA not in x:
+            x.append(verticeA)
             lt.addLast(vertices, verticeA)
         verticeB = arco["vertexB"]
-        if verticeB not in vertices:
+        if verticeB not in x:
+            x.append(verticeB)
             lt.addLast(vertices, verticeB)
     print(vertices)
         
