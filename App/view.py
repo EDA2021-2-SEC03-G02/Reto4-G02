@@ -86,8 +86,18 @@ def print3airports(lista):
         for x in lt.iterator(lista):
             primero = controller.infoAirport(cont, x)
             print("IATA: "+primero["IATA"]+", Nombre: " +primero["Name"]+", Ciudad: "+primero["City"]+", País: "+primero["Country"])
-
-
+    else:
+            primeros3 = lt.subList(lista, 1, 3)
+            ultimos3 = lt.subList(lista, lt.size(lista)-2, 3)
+            print("A continuación los primeros 3 aeropuertos afectados:")
+            for x in lt.iterator(primeros3):
+                primero = controller.infoAirport(cont, x)
+                print("IATA: "+primero["IATA"]+", Nombre: " +primero["Name"]+", Ciudad: "+primero["City"]+", País: "+primero["Country"])
+            print("A continuación los últimos 3 aeropuertos afectados")
+            for x in lt.iterator(ultimos3):
+                primero = controller.infoAirport(cont, x)
+                print("IATA: "+primero["IATA"]+", Nombre: " +primero["Name"]+", Ciudad: "+primero["City"]+", País: "+primero["Country"])
+    
 def option2(cont):
     print("Cargando la información de vuelos, rutas, aeropuertos y ciudades")
     controller.loadTodo(cont, airports, routes, cities)
