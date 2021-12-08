@@ -27,6 +27,7 @@
 import math
 import config as cf
 from DISClib.ADT import list as lt
+from DISClib.ADT import queue as q
 from DISClib.ADT import map as mp
 from DISClib.DataStructures import mapentry as me
 from DISClib.Algorithms.Sorting import shellsort as sa
@@ -385,10 +386,27 @@ def haversine(lon1, lat1, lon2, lat2):
     return c * r
 
 #Req 4
-def RutaMasParadas(analyzer, km, ciudad):
+def RutaMasParadas(analyzer, km):
+    lista = lt.newList()
+    vertices = lt.newList()
     grafo = analyzer["NO-aeropuertos"]
-    mst = pr.PrimMST(grafo)
-    print(mst)
+    search = pr.PrimMST(grafo)
+    #peso = pr.weightMST(grafo, search)
+    path = search["mst"]
+    while not q.isEmpty(path):
+        edge = q.dequeue(path)
+        lt.addLast(lista, edge)
+    for arco in lt.iterator(lista):
+        verticeA = arco["vertexA"]
+        if verticeA not in vertices:
+            lt.addLast(vertices, verticeA)
+        verticeB = arco["vertexB"]
+        if verticeB not in vertices:
+            lt.addLast(vertices, verticeB)
+    print(vertices)
+        
+    
+
 
 
 # Req 5
