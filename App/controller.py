@@ -98,11 +98,6 @@ def infoAirport(analyzer, iata):
 def RutaMenorCosto(analyzer, inicio, final):
     return model.RutaMenorCosto(analyzer, inicio, final)
     
-
-# Inicialización del Catálogo de libros
-
-# Funciones para la carga de datos
-
-# Funciones de ordenamiento
-
-# Funciones de consulta sobre el catálogo
+# Req 5
+def ChaoAirport(analyzer, iata):
+    return model.ChaoAirport(analyzer, iata)

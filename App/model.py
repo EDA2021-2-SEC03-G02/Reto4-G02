@@ -386,7 +386,12 @@ def haversine(lon1, lat1, lon2, lat2):
     return c * r
 
 
-
+# Req 5
+def ChaoAirport(analyzer, iata):
+    grafo = analyzer["Di-aeropuertos"]
+    tupla = ElDegree(grafo, iata)
+    total_vertex = tupla[0]+tupla[1]
+    
 
 
 
