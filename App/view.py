@@ -179,7 +179,7 @@ while True:
         millas = input("Por favor escriba su cantidad de millas de viajero: ")
     elif int(inputs[0]) == 7:
         airport = input("Por favor escriba el código IATA del aeropuerto que está fuera de funcionamiento: ")
-        controller.ChaoAirport(cont, airport)
+        datos = controller.ChaoAirport(cont, airport)
     else:
         sys.exit(0)
 sys.exit(0)
