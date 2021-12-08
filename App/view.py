@@ -98,6 +98,12 @@ def print3airports(lista):
                 primero = controller.infoAirport(cont, x)
                 print("IATA: "+primero["IATA"]+", Nombre: " +primero["Name"]+", Ciudad: "+primero["City"]+", País: "+primero["Country"])
     
+def printRecorridos(lista):
+    for element in lt.iterator(lista):
+        print("Origen: "+element["vertexA"]+", Destino: "+element["vertexB"]+", Distancia en Km: "+str(element["weight"]))
+        print("**"*56)
+
+
 def option2(cont):
     print("Cargando la información de vuelos, rutas, aeropuertos y ciudades")
     controller.loadTodo(cont, airports, routes, cities)
@@ -179,18 +185,29 @@ while True:
         origen = controller.getAirportCity(cont, id1)
         partida = origen[0]
         d1 = origen[1]
+        d1 = round(d1, 3)
         partida1 = controller.infoAirport(cont, partida)
         destino = controller.getAirportCity(cont, id2)
         llegada = destino[0]
         llegada1 = controller.infoAirport(cont,llegada)
         d2 = destino[1]
-        print("El aeropuerto que se usará como punto de partida está a una distancia de "+str(d1)+"de la ciudad elegida como origen")
+        d2 = round(d2,3)
+        print("")
+        print("El aeropuerto que se usará como punto de partida está a una distancia de "+str(d1)+" Km de la ciudad elegida como origen")
         print("Ahora, la información de dicho aeropuerto:")
         printPrimero(partida1)
-        print("El aeropuerto que se usará como punto de llegada está a una distancia de "+str(d2)+"de la ciudad elegida como destino")
+        print("")
+        print("El aeropuerto que se usará como punto de llegada está a una distancia de "+str(d2)+" Km de la ciudad elegida como destino")
         print("Ahora, la información de dicho aeropuerto:")
         printPrimero(llegada1)
         cortos = controller.RutaMenorCosto(cont, partida, llegada)
+        print("")
+        print("A continuación la ruta más corta (en distancia) para poder llegar desde el aeropuerto de origen hasta el aeropuerto de destino: ")
+        print("**"*56)
+        printRecorridos(cortos[1])
+        distancia_total = d1+d2+cortos[0]
+        print("")
+        print("La distancia total para hacer este recorrido en Km (incluyendo la distancia necesaria para llegar de la ciudad origen al aeropuerto origen\ny la necesaria para llegar del aeropuerto destino a la ciudad destino) es de: "+str(distancia_total))
 
         
     elif int(inputs[0]) == 6:
