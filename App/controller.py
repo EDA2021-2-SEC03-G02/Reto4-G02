@@ -89,7 +89,7 @@ def findCityName(analyzer, ciudad):
 def getInfo(analyzer, id):
     return model.getInfo(analyzer, id)
 
-def getAirportCity(cont, id1):
+def getAirportCity(cont, id):
     return model.getAirportCity(cont, id)
 
 

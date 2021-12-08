@@ -280,7 +280,6 @@ def Top5Conectados(analyzer):
             lt.addLast(lista_final, t)
     sorted_list = ms.sort(lista_final, compareArtistsYearBorn)
     lista_ff = lt.subList(sorted_list,1,5)
-    print(lista_ff)
     return lista_ff, lt.size(lista)
 def compareArtistsYearBorn(artist1, artist2):
     a = int(artist1[1])
@@ -321,8 +320,37 @@ def getInfo(analyzer, id):
     info = me.getValue(pareja)
     return info
 
-def getAirportCity(cont, id):
-    None
+def connectedAirports(analyzer):
+    lista = lt.newList("ARRAY_LIST")
+    grafo = analyzer["Di-aeropuertos"]
+    vertices = gr.vertices(grafo)
+    for vertex in lt.iterator(vertices):
+        tupla = ElDegree(grafo, vertex)
+        total_vertex = tupla[0]+tupla[1]
+        if total_vertex>0:
+            lt.addLast(lista, vertex)
+    return lista
+
+def getAirportCity(analyzer, id):
+    lista = connectedAirports(analyzer)
+    valor = getInfo(analyzer, id)
+    mapa2 = analyzer["aeropuertos"]
+    lon1 = float(valor["lng"])
+    lat1 = float(valor["lat"])
+    final = ""
+    menor = 1000000000000000000000
+    for airport in lt.iterator(lista):
+        tupla = mp.get(mapa2, airport)
+        value = me.getValue(tupla)
+        lon2 = float(value["Longitude"])
+        lat2 = float(value["Latitude"])
+        distance = haversine(lon1, lat1, lon2, lat2)
+        if distance < menor:
+            menor = distance
+            final = airport
+    return final, menor
+
+
 
 
 
