@@ -212,7 +212,8 @@ while True:
         
     elif int(inputs[0]) == 6:
         ciudad = input("Por favor escriba su ciudad de origen: ")
-        millas = input("Por favor escriba su cantidad de millas de viajero: ")
+        millas = float(input("Por favor escriba su cantidad de millas de viajero: "))
+        km = millas*1.60
     elif int(inputs[0]) == 7:
         airport = input("Por favor escriba el código IATA del aeropuerto que está fuera de funcionamiento: ")
         datos = controller.ChaoAirport(cont, airport)
