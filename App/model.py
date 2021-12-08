@@ -139,11 +139,11 @@ def addConnectionNO(analyzer, airport1, airport2, distance):
         
 
 def addConnection(analyzer, airport1, airport2, distance):
-    #edge = gr.getEdge(analyzer['Di-aeropuertos'], airport1, airport2)
+    edge = gr.getEdge(analyzer['Di-aeropuertos'], airport1, airport2)
     #edge2 = gr.getEdge(analyzer['Di-aeropuertos'], airport2, airport1)
     #hacer todo aca para no dirijido, hacer edge 2 y revisar y todo eso
-    #if edge is None:
-    gr.addEdge(analyzer['Di-aeropuertos'], airport1, airport2, distance)
+    if edge is None:
+        gr.addEdge(analyzer['Di-aeropuertos'], airport1, airport2, distance)
     """if (edge is not None) and (edge2 is not None):
         #print(airport1)
         #print(airport2)
