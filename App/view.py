@@ -79,6 +79,10 @@ def printMasConectados(lista,cont):
         print("**"*56)
         print("Nombre: " + nombre+", Ciudad: "+ciudad+", País: "+pais+", Total de Conexiones: "+str(total)+", Conexiones Entrantes: "+str(inbound)+", Conexiones Salientes: "+str(outbound))
 
+def print3airports(lista):
+    tamanio = lt.size(lista)
+    
+
 def option2(cont):
     print("Cargando la información de vuelos, rutas, aeropuertos y ciudades")
     controller.loadTodo(cont, airports, routes, cities)
@@ -180,6 +184,9 @@ while True:
     elif int(inputs[0]) == 7:
         airport = input("Por favor escriba el código IATA del aeropuerto que está fuera de funcionamiento: ")
         datos = controller.ChaoAirport(cont, airport)
+        print("Al eliminar el aeropuerto "+airport+", se ven afectados un total de "+str(datos[1])+" aeropuertos.")
+        print3airports(datos[0])
+
     else:
         sys.exit(0)
 sys.exit(0)
