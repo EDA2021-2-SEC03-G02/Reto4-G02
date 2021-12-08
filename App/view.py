@@ -20,6 +20,7 @@
  * along withthis program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
+
 import config as cf
 import sys
 import controller
@@ -159,17 +160,19 @@ while True:
         origen = controller.getAirportCity(cont, id1)
         partida = origen[0]
         d1 = origen[1]
-        partida = controller.infoAirport(cont, partida)
+        partida1 = controller.infoAirport(cont, partida)
         destino = controller.getAirportCity(cont, id2)
-        llegada = origen[0]
-        llegada = controller.infoAirport(cont,llegada)
-        d2 = origen[1]
+        llegada = destino[0]
+        llegada1 = controller.infoAirport(cont,llegada)
+        d2 = destino[1]
         print("El aeropuerto que se usará como punto de partida está a una distancia de "+str(d1)+"de la ciudad elegida como origen")
         print("Ahora, la información de dicho aeropuerto:")
-        printPrimero(partida)
+        printPrimero(partida1)
         print("El aeropuerto que se usará como punto de llegada está a una distancia de "+str(d2)+"de la ciudad elegida como destino")
         print("Ahora, la información de dicho aeropuerto:")
-        printPrimero(llegada)
+        printPrimero(llegada1)
+        cortos = controller.RutaMenorCosto(cont, partida, llegada)
+
         
     elif int(inputs[0]) == 6:
         ciudad = input("Por favor escriba su ciudad de origen: ")

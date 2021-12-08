@@ -86,7 +86,7 @@ def addAirport(analyzer, airport):
 def addRoutesGraph(analyzer, route):
     airport1 = route["Departure"]
     airport2 = route["Destination"]
-    distance = route["distance_km"]
+    distance = float(route["distance_km"])
     addAirportVertex(analyzer, airport1)
     addAirportVertex(analyzer, airport2)
     addAirportVertexNO(analyzer, airport1)
@@ -139,8 +139,8 @@ def addConnectionNO(analyzer, airport1, airport2, distance):
         
 
 def addConnection(analyzer, airport1, airport2, distance):
-    edge = gr.getEdge(analyzer['Di-aeropuertos'], airport1, airport2)
-    edge2 = gr.getEdge(analyzer['Di-aeropuertos'], airport2, airport1)
+    #edge = gr.getEdge(analyzer['Di-aeropuertos'], airport1, airport2)
+    #edge2 = gr.getEdge(analyzer['Di-aeropuertos'], airport2, airport1)
     #hacer todo aca para no dirijido, hacer edge 2 y revisar y todo eso
     #if edge is None:
     gr.addEdge(analyzer['Di-aeropuertos'], airport1, airport2, distance)
@@ -356,6 +356,14 @@ def infoAirport(analyzer, iata):
     pareja = mp.get(mapa, iata)
     info = me.getValue(pareja)
     return info
+
+def RutaMenorCosto(analyzer, inicio, final):
+    x =dj.Dijkstra(analyzer["Di-aeropuertos"], inicio)
+    d = dj.distTo(x, final)
+    print(d)
+    p = dj.pathTo(x, final)
+    print(p)
+    d, p
 
 
 
