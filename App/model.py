@@ -359,11 +359,9 @@ def infoAirport(analyzer, iata):
 
 def RutaMenorCosto(analyzer, inicio, final):
     x =dj.Dijkstra(analyzer["Di-aeropuertos"], inicio)
-    d = dj.distTo(x, final)
-    print(d)
-    p = dj.pathTo(x, final)
-    print(p)
-    d, p
+    distance = dj.distTo(x, final)
+    path = dj.pathTo(x, final)
+    return distance, path
 
 
 
