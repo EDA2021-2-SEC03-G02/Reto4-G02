@@ -60,10 +60,6 @@ def newAnalyzer():
                                    maptype='PROBING',
                                    loadfactor=0.5,
                                    comparefunction=compareartistMAP) 
-    analyzer['ciudad-iata'] = gr.newGraph(datastructure='ADJ_LIST',
-                                              directed=False,
-                                              size=14000,
-                                              comparefunction=compareStopIds)
     analyzer['ciudades_id'] = mp.newMap(10000,
                                    maptype='PROBING',
                                    loadfactor=0.5,
@@ -82,7 +78,6 @@ def addAirport(analyzer, airport):
     mp.put(mapa, airport["IATA"], airport)
     lista = analyzer["air"]
     lt.addLast(lista, airport)
-    addRoutesGraphCities(analyzer, airport)
     addAirportVertex(analyzer, airport["IATA"])
     addAirportVertexNO(analyzer, airport["IATA"])
 
@@ -96,26 +91,6 @@ def addRoutesGraph(analyzer, route):
     addAirportVertexNO(analyzer, airport2)
     addConnection(analyzer, airport1, airport2, distance)
     LookBothFlights(analyzer, airport1, airport2, distance)
-
-def addRoutesGraphCities(analyzer, airport):
-    iata = airport["IATA"]
-    addGraphCitiesVertexIata(analyzer, iata)
-    #lt.addLast(analyzer["air_iata"], iata)
-
-def addConnection2(analyzer, iata, ciudad, distance):
-    edge = gr.getEdge(analyzer['ciudad-iata'], iata, ciudad)
-    if edge is None:
-        gr.addEdge(analyzer['ciudad-iata'], iata, ciudad, distance)
-
-
-def addGraphCitiesVertexIata(analyzer, info):
-    try:
-        if not gr.containsVertex(analyzer['ciudad-iata'], info):
-            gr.insertVertex(analyzer['ciudad-iata'], info)
-        return analyzer
-    except Exception as exp:
-        error.reraise(exp, 'model:addstop')
-
 
 
 
@@ -147,13 +122,6 @@ def addConnection(analyzer, airport1, airport2, distance):
     #hacer todo aca para no dirijido, hacer edge 2 y revisar y todo eso
     if edge is None:
         gr.addEdge(analyzer['Di-aeropuertos'], airport1, airport2, distance)
-    """if (edge is not None) and (edge2 is not None):
-        #print(airport1)
-        #print(airport2)
-        addConnectionNO(analyzer, airport1, airport2, distance)
-        if (airport1=="DXB" and airport2 =="LED")or(airport2=="DXB" and airport1 =="LED"):
-            print("AAAAAA")"""
-
     return analyzer
 
 def LookBothFlights(analyzer,airport1,airport2,distance):
@@ -169,20 +137,7 @@ def addCiudad(analyzer, ciudad):
     mapa1 = analyzer["ciudades_nombre"]
     updateCiudadesNombre(mapa1, ciudad)
     lt.addLast(analyzer["cit"], ciudad["id"])
-    #addCiudadGrafoIATA_ciudad(analyzer, ciudad)
 
-def addCiudadGrafoIATA_ciudad(analyzer, ciudad):
-    addGraphCitiesVertexIata(analyzer, ciudad["id"])
-    for airport in lt.iterator(analyzer["air"]):
-        lat1 = airport["Latitude"]
-        lon1 = airport["Longitude"]
-        lat2 = ciudad["lat"]
-        lon2 = ciudad["lng"]
-        distancia = haversine(float(lon1), float(lat1), float(lon2), float(lat2))
-        iata = airport["IATA"]
-        city = ciudad["id"]
-        addConnection2(analyzer, iata, city, distancia)
-        print("OK")
 
 
 def updateCiudadesNombre(mapa1, ciudad):
