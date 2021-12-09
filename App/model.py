@@ -354,7 +354,7 @@ def getAirportCity(analyzer, id):
     lon1 = float(valor["lng"])
     lat1 = float(valor["lat"])
     final = ""
-    menor = 1000000000000000000000
+    menor = 10000000000000000000000000000000000
     for airport in lt.iterator(lista):
         tupla = mp.get(mapa2, airport)
         value = me.getValue(tupla)
