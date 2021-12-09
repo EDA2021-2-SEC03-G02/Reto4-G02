@@ -46,7 +46,7 @@ def printMenu():
     print("1- Inicializar Analizador")
     print("2- Cargar información de los vuelos del mundo")
     print("3- Encontrar puntos de interconexión aérea")
-    print("4- Encont1rar clústeres de tráfico aéreo y saber si dos aeropuertos pertenecen a esta")
+    print("4- Encontrar clústeres de tráfico aéreo y saber si dos aeropuertos pertenecen a esta")
     print("5- Encontrar la ruta más corta entre dos ciudades")
     print("6- Utilizar millas de viajero para conocer la mayor cantidad de ciudades")
     print("7- Cuantificar el efecto de un aeropuerto cerrado")
@@ -224,6 +224,8 @@ while True:
         lista = info[0]
         peso = round(info[1],3)
         num_vertices = info[2]
+        print("A continuación, se muestran los recorridos posibles en el MST, con sus respectivas distancias")
+        printMST(lista)
         print("Existe un total de "+str(num_vertices)+ " posibles aeropuertos en el MST\n")
         print("El distancia total (weight o peso del MST) es de "+str(peso)+" Km.")
         print("En este caso, el usuario cuenta con "+str(millas)+" millas. Es decir, "+str(km)+" kilómetros.")
@@ -233,8 +235,6 @@ while True:
         else:
             d = peso-km
             print("Por ende, el usuario no puede cumplir con el recorrido del MST, ya que le faltan "+str(d)+" kilómetros")
-        print("A continuación, se muestran los recorridos posibles en el MST, con sus respectivas distancias")
-        printMST(lista)
     elif int(inputs[0]) == 7:
         airport = input("Por favor escriba el código IATA del aeropuerto que está fuera de funcionamiento: ")
         datos = controller.ChaoAirport(cont, airport)
