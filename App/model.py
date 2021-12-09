@@ -399,7 +399,7 @@ def haversine(lon1, lat1, lon2, lat2):
     return c * r
 
 #Req 4
-def RutaMasParadas(analyzer, km, d):
+def RutaMasParadas(analyzer):
     lista = lt.newList()
     vertices = lt.newList()
     grafo = analyzer["NO-aeropuertos"]

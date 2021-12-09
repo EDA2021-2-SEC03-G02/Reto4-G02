@@ -103,6 +103,9 @@ def printRecorridos(lista):
         print("Origen: "+element["vertexA"]+", Destino: "+element["vertexB"]+", Distancia en Km: "+str(element["weight"]))
         print("**"*56)
 
+def printMST(lista):
+    for element in lt.iterator(lista):
+        print("Aeropuerto Origen: "+element["vertexA"]+", Aeropuerto Destino: "+element["vertexB"]+", Distancia (km): "+str(element["weight"]))
 
 def option2(cont):
     print("Cargando la información de vuelos, rutas, aeropuertos y ciudades")
@@ -215,16 +218,28 @@ while True:
         print("")
         print("La distancia total para hacer este recorrido en Km (incluyendo la distancia necesaria para llegar de la ciudad origen al aeropuerto origen\ny la necesaria para llegar del aeropuerto destino a la ciudad destino) es de: "+str(distancia_total))        
     elif int(inputs[0]) == 6:
-        ciudad = input("Por favor escriba su ciudad de origen: ")
         millas = float(input("Por favor escriba su cantidad de millas de viajero: "))
-        km = millas*1.60
-        info = controller.RutaMasParadas(cont, km, ciudad)
+        km = round(millas*1.60,3)
+        info = controller.RutaMasParadas(cont)
+        lista = info[0]
+        peso = round(info[1],3)
+        num_vertices = info[2]
+        print("Existe un total de "+str(num_vertices)+ " posibles aeropuertos en el MST\n")
+        print("El distancia total (weight o peso del MST) es de "+str(peso)+" Km.")
+        print("En este caso, el usuario cuenta con "+str(millas)+" millas. Es decir, "+str(km)+" kilómetros.")
+        if km>=peso:
+            d = km-peso
+            print("Por ende, el usuario puede cumplir con el recorrido del MST, y le sobran "+str(d)+" kilómetros")
+        else:
+            d = peso-km
+            print("Por ende, el usuario no puede cumplir con el recorrido del MST, ya que le faltan "+str(d)+" kilómetros")
+        print("A continuación, se muestran los recorridos posibles en el MST, con sus respectivas distancias")
+        printMST(lista)
     elif int(inputs[0]) == 7:
         airport = input("Por favor escriba el código IATA del aeropuerto que está fuera de funcionamiento: ")
         datos = controller.ChaoAirport(cont, airport)
         print("Al eliminar el aeropuerto "+airport+", se ven afectados un total de "+str(datos[1])+" aeropuertos.")
         print3airports(datos[0])
-
     else:
         sys.exit(0)
 sys.exit(0)

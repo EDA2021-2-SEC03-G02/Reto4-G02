@@ -102,8 +102,8 @@ def RutaMenorCosto(analyzer, inicio, final):
     return model.RutaMenorCosto(analyzer, inicio, final)
 
 #Req 4
-def RutaMasParadas(analyzer, km, ciudad):
-    return model.RutaMasParadas(analyzer, km, ciudad)
+def RutaMasParadas(analyzer):
+    return model.RutaMasParadas(analyzer)
     
 #Req 5
 def ChaoAirport(analyzer, iata):
