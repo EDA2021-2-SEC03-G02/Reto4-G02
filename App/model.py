@@ -303,6 +303,10 @@ def infoIata(iata, analyzer):
     
 
     
+#Req 2
+def FindSCC(analyzer, iata1, iata2):
+    grafo = analyzer["Di-aeropuertos"]
+    
 
 
         
@@ -406,7 +410,7 @@ def RutaMasParadas(analyzer, km, d):
         if verticeB not in x:
             x.append(verticeB)
             lt.addLast(vertices, verticeB)
-    print(vertices)
+    return lista, peso, lt.size(vertices)
         
     
 
