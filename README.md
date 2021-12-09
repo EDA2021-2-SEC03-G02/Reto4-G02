@@ -17,3 +17,5 @@ Este directorio contiene todo el código de base que se entrega para el funciona
 Este directorio contiene las pruebas realizadas a los TADs, Estructuras de Datos y Algoritmos.
 
 Juan Andrés Eslava Tovar j.eslava@uniandes.edu.co 202012035 David Alejandro Fuquen Flórez d.fuquen@uniandes.edu.co 202021113
+
+En la carpeta Docs, el documento en formato pdf con las complejidades temporales lleva por nombre Observaciones FINAL Reto 4
