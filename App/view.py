@@ -229,7 +229,7 @@ while True:
         print("En este caso, el usuario cuenta con "+str(millas)+" millas. Es decir, "+str(km)+" kilómetros.")
         if km>=peso:
             d = km-peso
-            print("Por ende, el usuario puede cumplir con el recorrido del MST, y le sobran "+str(d)+" kilómetros")
+            print("Por ende, el usuario no puede cumplir con el recorrido del MST, y le sobran "+str(d)+" kilómetros")
         else:
             d = peso-km
             print("Por ende, el usuario no puede cumplir con el recorrido del MST, ya que le faltan "+str(d)+" kilómetros")
