@@ -81,6 +81,9 @@ def Top5Conectados(analyzer):
 def infoIata(iata, cont):
     return model.infoIata(iata, cont)
 
+#Req 2
+def FindSCC(analyzer, iata1, iata2):
+    return model.FindSCC(analyzer, iata1, iata2)
 
 #Req3
 def findCityName(analyzer, ciudad):

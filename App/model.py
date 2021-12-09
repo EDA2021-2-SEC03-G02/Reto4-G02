@@ -33,6 +33,7 @@ from DISClib.DataStructures import mapentry as me
 from DISClib.Algorithms.Sorting import shellsort as sa
 from DISClib.Algorithms.Graphs import dijsktra as dj
 from DISClib.Algorithms.Graphs import prim as pr
+from DISClib.Algorithms.Graphs import scc as sc
 from DISClib.ADT.graph import gr
 from DISClib.Utils import error as error
 assert cf
@@ -306,7 +307,12 @@ def infoIata(iata, analyzer):
 #Req 2
 def FindSCC(analyzer, iata1, iata2):
     grafo = analyzer["Di-aeropuertos"]
-    
+    info = sc.KosarajuSCC(grafo)
+    size = sc.connectedComponents(info)
+    print(size)
+    connected = sc.stronglyConnected(info, iata1, iata2)
+    print(connected)
+
 
 
         

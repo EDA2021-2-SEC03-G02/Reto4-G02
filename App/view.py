@@ -166,8 +166,9 @@ while True:
         printMasConectados(lista, cont)
         
     elif int(inputs[0]) == 4:
-        airport1 = input("Por favor escriba el nombre del código IATA del aeropuerto 1: ")
-        airport2 = input("Por favor escriba el nombre del código IATA del aeropuerto 2: ")
+        iata1 = input("Por favor escriba el nombre del código IATA del aeropuerto 1: ")
+        iata2 = input("Por favor escriba el nombre del código IATA del aeropuerto 2: ")
+        info = controller.FindSCC(cont, iata1, iata2)
     elif int(inputs[0]) == 5:
         ciudad1 = input("Por favor escriba el nombre de la ciudad de origen: ")
         opciones1 = controller.findCityName(cont, ciudad1)
@@ -207,9 +208,7 @@ while True:
         printRecorridos(cortos[1])
         distancia_total = d1+d2+cortos[0]
         print("")
-        print("La distancia total para hacer este recorrido en Km (incluyendo la distancia necesaria para llegar de la ciudad origen al aeropuerto origen\ny la necesaria para llegar del aeropuerto destino a la ciudad destino) es de: "+str(distancia_total))
-
-        
+        print("La distancia total para hacer este recorrido en Km (incluyendo la distancia necesaria para llegar de la ciudad origen al aeropuerto origen\ny la necesaria para llegar del aeropuerto destino a la ciudad destino) es de: "+str(distancia_total))        
     elif int(inputs[0]) == 6:
         ciudad = input("Por favor escriba su ciudad de origen: ")
         millas = float(input("Por favor escriba su cantidad de millas de viajero: "))
