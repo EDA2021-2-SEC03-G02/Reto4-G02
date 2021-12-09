@@ -184,10 +184,11 @@ def totalRoutes(grafo):
 def FirstAirport(analyzer):
     lista = analyzer["air"]
     primera = lt.firstElement(lista)
-    return primera
+    ultimo = lt.lastElement(lista)
+    return primera, ultimo
 
 def sizeLista(lista):
-    return lt.size(lista), lt.lastElement(lista)
+    return lt.size(lista), lt.lastElement(lista), lt.firstElement(lista)
 
 def infoUltimo(analyzer, ultimo):
     print(ultimo)
@@ -195,9 +196,6 @@ def infoUltimo(analyzer, ultimo):
     pareja = mp.get(mapa, ultimo)
     info = me.getValue(pareja)
     return info
-def sizeMapa(analyzer):
-    mapa = analyzer["ciudades_id"]
-    return mp.size(mapa)
 
 
 

@@ -37,7 +37,7 @@ operación solicitada
 """
 airports = "airports-utf8-small.csv"
 routes = "routes-utf8-small.csv"
-cities = "worldcities.csv"
+cities = "worldcities-utf8.csv"
 
 def printMenu():
     print("\n")
@@ -113,21 +113,21 @@ def option2(cont):
     primero = controller.FirstAirport(cont)
     print("Informacion del primer aeropuerto en ser cargado:")
     print("El primer aeropuerto cargado fue: ")
-    printPrimero(primero)
+    printPrimero(primero[0])
+    print("El último aeropuerto cargado fue: ")
+    printPrimero(primero[1])
     grafo1 = cont["Di-aeropuertos"]
     numedges1 = controller.totalRoutes(grafo1)
     numvertex1 = controller.totalAirports(grafo1)
     grafo2 = cont["NO-aeropuertos"]
     numedges2 = controller.totalRoutes(grafo2)
     numvertex2 = controller.totalAirports(grafo2)
-    grafo3 = cont["ciudad-iata"]
-    numedges3 = controller.totalRoutes(grafo3)
-    numvertex3 = controller.totalAirports(grafo3)
     lista = cont["cit"]
     tamanio = controller.sizeLista(lista)[0]
     ultimo = controller.sizeLista(lista)[1]
-    info_utlimo = controller.infoUltimo(cont, ultimo)
-    tamanio1 = controller.sizeMapa(cont)
+    primera = controller.sizeLista(lista)[2]
+    info_ultimo = controller.infoUltimo(cont, ultimo)
+    info_primero = controller.infoUltimo(cont, primera)
     print("**"*56)
     print("Información del Digrafo de aeropuertos conectados por vuelos entre sí")
     print("Numero de vertices (aeropuertos): " +str(numvertex1))
@@ -137,12 +137,11 @@ def option2(cont):
     print("Numero de vertices (aeropuertos): " +str(numvertex2))
     print("Numero de arcos: " +str(numedges2))
     print("**"*56)
-    """print("Información del grafo no direccionado que representa las ciudades y sus aeropuertos")
-    print("Numero de vertices (aeropuertos y ciudades): " +str(numvertex3))
-    print("Numero de arcos: " +str(numedges3))
-    print("Total de ciudades en el grafo: "+str(tamanio))"""
+    print("Hay un total de "+str(tamanio)+" ciudades.")
+    print("Información de la primera ciudad cargada en el grafo: ")
+    printInfoUltimo(info_primero)
     print("Información de la última ciudad cargada en el grafo: ")
-    printInfoUltimo(info_utlimo)
+    printInfoUltimo(info_ultimo)
     print("**"*56)
     
     
