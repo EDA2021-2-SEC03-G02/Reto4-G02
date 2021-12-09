@@ -429,17 +429,8 @@ def RutaMasParadas(analyzer):
 def ChaoAirport(analyzer, iata):
     grafo = analyzer["Di-aeropuertos"]
     grafo2 = analyzer["NO-aeropuertos"]
-    tupla = ElDegree(grafo, iata)
-    total_vertex = tupla[0]+tupla[1]
     adyacentes = gr.adjacents(grafo, iata)
     afectados = lt.size(adyacentes)
-    vertex_no = gr.degree(grafo2, iata)
-    """og_di_ve = totalAirports(grafo)
-    og_di_ed = totalRoutes(grafo)
-    og_no_ve = totalAirports(grafo2)
-    og_no_ed = totalRoutes(grafo2)
-    nu_di_ed = og_di_ed-total_vertex
-    nu_no_ed = og_no_ed-vertex_no"""
     return adyacentes, afectados
 
 
