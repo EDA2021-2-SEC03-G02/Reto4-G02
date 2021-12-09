@@ -309,10 +309,13 @@ def FindSCC(analyzer, iata1, iata2):
     grafo = analyzer["Di-aeropuertos"]
     info = sc.KosarajuSCC(grafo)
     size = sc.connectedComponents(info)
-    print(size)
     connected = sc.stronglyConnected(info, iata1, iata2)
-    print(connected)
-
+    x = ""
+    if connected == True:
+        x = "sí"
+    else:
+        x = "no"
+    return size, x
 
 
         

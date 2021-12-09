@@ -169,6 +169,11 @@ while True:
         iata1 = input("Por favor escriba el nombre del código IATA del aeropuerto 1: ")
         iata2 = input("Por favor escriba el nombre del código IATA del aeropuerto 2: ")
         info = controller.FindSCC(cont, iata1, iata2)
+        airport1 = controller.infoAirport(cont, iata1)
+        airport2 = controller.infoAirport(cont, iata2)
+        print("Existen "+str(info[0])+" elementos fuertemente conectados (SCC) en el grafo de aeropuertos rutas")
+        existe = info[1]
+        print("En este caso, los aeropuertos "+airport1["Name"]+ " y "+airport2["Name"]+" "+existe+" hacen parte del mismo clúster")
     elif int(inputs[0]) == 5:
         ciudad1 = input("Por favor escriba el nombre de la ciudad de origen: ")
         opciones1 = controller.findCityName(cont, ciudad1)
